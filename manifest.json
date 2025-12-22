@@ -1,0 +1,82 @@
+{
+  "manifest_version": 3,
+  "name": "Siso Copier",
+  "version": "1.2.0",
+  "description": "Streamline your web research with instant keyword highlighting, context-aware auto-copy, and organized history management.",
+  "permissions": [
+    "contextMenus",
+    "activeTab",
+    "scripting",
+    "storage",
+    "clipboardWrite",
+    "sidePanel",
+    "windows"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_title": "Siso Copier"
+  },
+  "side_panel": {
+    "default_path": "src/sidebar.html"
+  },
+  "options_page": "src/options.html",
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "icons": {
+    "16": "assets/icons/icon16.png",
+    "32": "assets/icons/icon32.png",
+    "48": "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/modules/SisoState.js",
+        "src/modules/SisoUtils.js",
+        "src/modules/SisoUI.js",
+        "src/modules/SisoStorage.js",
+        "src/modules/SisoExtractor.js",
+        "src/modules/SisoHighlighter.js",
+        "src/modules/SisoNavigation.js",
+        "src/modules/SisoActions.js",
+        "src/modules/SisoShortcuts.js",
+        "src/content.js"
+      ],
+      "css": [
+        "src/styles.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "clear-highlights": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+X",
+        "mac": "Command+Shift+X"
+      },
+      "description": "Clear all highlights"
+    },
+    "nav-next": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+N",
+        "mac": "Command+Shift+N"
+      },
+      "description": "Navigate to next highlight"
+    },
+    "copy-title": {
+      "description": "Copy page title"
+    },
+    "copy-content": {
+      "description": "Copy page content"
+    },
+    "nav-prev": {
+      "description": "Navigate to previous highlight"
+    }
+  }
+}

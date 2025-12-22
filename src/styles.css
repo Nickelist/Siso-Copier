@@ -1,0 +1,202 @@
+/* Enhanced glassmorphism highlight marks with transparency */
+.kh-mark {
+  background: rgba(143, 243, 83, 0.6);
+  color: #1a1a1a;
+  border-radius: 6px;
+  padding: 2px 6px;
+  border: 2px solid rgba(143, 243, 83, 0.7);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.kh-mark::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(143, 243, 83, 0.4) 0%,
+    rgba(143, 243, 83, 0.2) 100%
+  );
+  border-radius: 6px;
+  z-index: -1;
+}
+
+.kh-mark::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(143, 243, 83, 0.2) 0%,
+    transparent 50%,
+    rgba(143, 243, 83, 0.1) 100%
+  );
+  border-radius: 6px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.kh-mark:hover {
+  background: rgba(143, 243, 83, 0.7);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  border-color: rgba(143, 243, 83, 0.8);
+}
+
+.kh-mark:hover::after {
+  opacity: 1;
+}
+
+/* Enhanced pulsing animation with your color */
+.kh-mark.kh-pulse {
+  outline: 4px solid rgba(143, 243, 83, 0.4);
+  animation: khPulse 1.6s ease-out 1;
+}
+
+@keyframes khPulse {
+  0% {
+    outline-width: 8px;
+    outline-color: rgba(143, 243, 83, 0.6);
+    transform: scale(1.03);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    outline-width: 4px;
+    outline-color: rgba(143, 243, 83, 0.4);
+  }
+  100% {
+    outline-width: 0;
+    outline-color: rgba(143, 243, 83, 0);
+    transform: scale(1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Enhanced notification styles with Chrome compatibility */
+.kh-copy-notification {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #1a1a1a;
+  padding: 16px 20px;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  z-index: 10000;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  max-width: 320px;
+  word-wrap: break-word;
+  animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.kh-copy-notification::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  border-radius: 16px;
+  z-index: -1;
+}
+
+.kh-copy-notification::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  border-radius: 16px;
+  z-index: -1;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%) scale(0.9);
+    opacity: 0;
+  }
+}
+
+/* Additional glassmorphism effects for better visual hierarchy */
+.kh-mark:hover::before {
+  background: linear-gradient(
+    135deg,
+    rgba(143, 243, 83, 0.6) 0%,
+    rgba(143, 243, 83, 0.3) 100%
+  );
+}
+
+/* Enhanced button effects */
+.kh-mark:active {
+  transform: scale(0.98);
+  background: rgba(143, 243, 83, 0.5);
+}
+
+/* Active highlight state for navigation */
+.kh-mark.kh-active {
+  outline: 4px solid rgba(59, 130, 246, 0.8);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3), 0 6px 20px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
+  z-index: 1000;
+  position: relative;
+}
+
+/* Navigation UI styles */
+.kh-navigation-ui button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Dark mode support for notifications */
+@media (prefers-color-scheme: dark) {
+  .kh-copy-notification {
+    background: rgba(30, 30, 30, 0.95) !important;
+    color: #e5e5e5 !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5) !important;
+  }
+}

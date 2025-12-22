@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Siso Copier</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        height: 100vh;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.9) 0%,
+          rgba(255, 255, 255, 0.8) 100%
+        );
+        color: #1a1a1a;
+        overflow-y: auto;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Chrome-compatible glassmorphism effect */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.4) 0%,
+          rgba(255, 255, 255, 0.2) 100%
+        );
+        z-index: -1;
+      }
+
+      .header {
+        padding: 24px 28px 20px;
+        text-align: left;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.6);
+        position: relative;
+        flex-shrink: 0;
+      }
+
+      .header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.3) 0%,
+          rgba(255, 255, 255, 0.1) 100%
+        );
+        z-index: -1;
+      }
+
+      .header h3 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1a1a1a;
+        letter-spacing: -0.01em;
+        position: relative;
+        z-index: 1;
+      }
+
+      .content {
+        padding: 24px 28px;
+        background: rgba(255, 255, 255, 0.4);
+        position: relative;
+        flex: 1;
+        overflow-y: auto;
+      }
+
+      .content::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.2) 0%,
+          rgba(255, 255, 255, 0.1) 100%
+        );
+        z-index: -1;
+      }
+
+      .button-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .btn {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 16px 20px;
+        background: rgba(59, 130, 246, 0.8);
+        border: 2px solid rgba(59, 130, 246, 0.6);
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 500;
+        color: #ffffff;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        width: 100%;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(59, 130, 246, 0.3) 0%,
+          rgba(59, 130, 246, 0.1) 100%
+        );
+        border-radius: 12px;
+        z-index: -1;
+      }
+
+      .btn::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(59, 130, 246, 0.4),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      .btn:hover {
+        background: rgba(59, 130, 246, 0.9);
+        border-color: rgba(59, 130, 246, 0.8);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      }
+
+      .btn:hover::after {
+        left: 100%;
+      }
+
+      .btn:active {
+        transform: translateY(-1px);
+        background: rgba(59, 130, 246, 0.95);
+      }
+
+      .btn-icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 14px;
+        fill: #ffffff;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 1;
+      }
+
+      .btn-text {
+        flex: 1;
+        text-align: left;
+        position: relative;
+        z-index: 1;
+      }
+
+      .status {
+        margin-top: 20px;
+        padding: 14px 18px;
+        border-radius: 10px;
+        text-align: left;
+        font-size: 14px;
+        font-weight: 500;
+        display: none;
+        background: rgba(255, 255, 255, 0.6);
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        position: relative;
+        z-index: 1;
+      }
+
+      .status::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.2) 0%,
+          rgba(255, 255, 255, 0.1) 100%
+        );
+        border-radius: 10px;
+        z-index: -1;
+      }
+
+      .status.success {
+        background: rgba(76, 175, 80, 0.2);
+        color: #2e7d32;
+        border-color: rgba(76, 175, 80, 0.4);
+      }
+
+      .status.error {
+        background: rgba(244, 67, 54, 0.2);
+        color: #c62828;
+        border-color: rgba(244, 67, 54, 0.4);
+      }
+
+      body.dark-mode {
+        background: linear-gradient(135deg, #2e323a 0%, #1e2024 100%);
+        color: #e5e5e5;
+      }
+
+      body.dark-mode::before {
+        background: linear-gradient(135deg, #2e323a 0%, #1e2024 100%);
+      }
+
+      body.dark-mode .header {
+        background: #1e2024;
+        border-color: rgba(255, 255, 255, 0.15);
+      }
+
+      body.dark-mode .header h3 {
+        color: #e5e5e5;
+      }
+
+      body.dark-mode .content {
+        background: #1e2024;
+      }
+
+      body.dark-mode .content::before {
+        background: transparent;
+      }
+
+      body.dark-mode .status {
+        background: rgba(40, 40, 40, 0.8);
+        border-color: rgba(255, 255, 255, 0.2);
+        color: #e5e5e5;
+      }
+
+      body.dark-mode .status.success {
+        background: rgba(76, 175, 80, 0.3);
+        color: #81c784;
+        border-color: rgba(76, 175, 80, 0.5);
+      }
+
+      body.dark-mode .status.error {
+        background: rgba(244, 67, 54, 0.3);
+        color: #e57373;
+        border-color: rgba(244, 67, 54, 0.5);
+      }
+
+      body.dark-mode .nav-section {
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+
+      body.dark-mode #navCounter {
+        color: #999;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body.auto-dark-mode {
+          background: linear-gradient(135deg, #2e323a 0%, #1e2024 100%);
+          color: #e5e5e5;
+        }
+
+        body.auto-dark-mode::before {
+          background: linear-gradient(135deg, #2e323a 0%, #1e2024 100%);
+        }
+
+        body.auto-dark-mode .header {
+          background: #1e2024;
+          border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        body.auto-dark-mode .header h3 {
+          color: #e5e5e5;
+        }
+
+        body.auto-dark-mode .content {
+          background: #1e2024;
+        }
+
+        body.auto-dark-mode .content::before {
+          background: transparent;
+        }
+
+        body.auto-dark-mode .status {
+          background: rgba(40, 40, 40, 0.8);
+          border-color: rgba(255, 255, 255, 0.2);
+          color: #e5e5e5;
+        }
+
+        body.auto-dark-mode .status.success {
+          background: rgba(76, 175, 80, 0.3);
+          color: #81c784;
+          border-color: rgba(76, 175, 80, 0.5);
+        }
+
+        body.auto-dark-mode .status.error {
+          background: rgba(244, 67, 54, 0.3);
+          color: #e57373;
+          border-color: rgba(244, 67, 54, 0.5);
+        }
+
+        body.auto-dark-mode .nav-section {
+          border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body.auto-dark-mode #navCounter {
+          color: #999;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h3>Siso Copier</h3>
+    </div>
+    <div class="content">
+      <div class="button-grid">
+        <button id="copyAll" class="btn">
+          <svg class="btn-icon" viewBox="0 0 24 24">
+            <path
+              d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
+            />
+          </svg>
+          <span class="btn-text">Copy All</span>
+        </button>
+        <button id="copyTitle" class="btn">
+          <svg class="btn-icon" viewBox="0 0 24 24">
+            <path
+              d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"
+            />
+          </svg>
+          <span class="btn-text">Copy Page Title</span>
+        </button>
+        <button id="copyContent" class="btn">
+          <svg class="btn-icon" viewBox="0 0 24 24">
+            <path
+              d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,5V19H5V5H19Z"
+            />
+          </svg>
+          <span class="btn-text">Copy Page Content</span>
+        </button>
+
+        <button id="exportMarkdown" class="btn">
+          <svg class="btn-icon" viewBox="0 0 24 24">
+            <path
+              d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"
+            />
+          </svg>
+          <span class="btn-text">Export to Markdown</span>
+        </button>
+
+        <div
+          style="height: 1px; background: rgba(0, 0, 0, 0.1); margin: 4px 0"
+        ></div>
+
+        <button id="aiSummarize" class="btn">
+          <svg class="btn-icon" viewBox="0 0 24 24">
+            <path
+              d="M19,1L17.74,3.75L15,5L17.74,6.26L19,9L20.25,6.26L23,5L20.25,3.75L19,1M9,4L6.5,9.5L4,4L9.5,6.5L9,4M19,13L17.74,15.74L15,17L17.74,18.26L19,21L20.25,18.26L23,17L20.25,15.74L19,13M12,8L6,21L0,8L13,14L12,8Z"
+            />
+          </svg>
+          <span class="btn-text">Summarize Page</span>
+        </button>
+
+        <button id="aiExplain" class="btn">
+          <svg class="btn-icon" viewBox="0 0 24 24">
+            <path
+              d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z"
+            />
+          </svg>
+          <span class="btn-text">Explain Selection</span>
+        </button>
+
+        <div
+          style="height: 1px; background: rgba(0, 0, 0, 0.1); margin: 4px 0"
+        ></div>
+
+        <button id="openHistory" class="btn">
+          <svg class="btn-icon" viewBox="0 0 24 24">
+            <path
+              d="M13,3A9,9 0 0,0 4,12H1L4.89,15.89L4.96,16.03L9,12H6A7,7 0 0,1 13,5A7,7 0 0,1 20,12A7,7 0 0,1 13,19C11.07,19 9.32,18.21 8.06,16.94L6.64,18.36C8.27,20 10.5,21 13,21A9,9 0 0,0 22,12A9,9 0 0,0 13,3Z"
+            />
+          </svg>
+          <span class="btn-text">History</span>
+        </button>
+        <button id="openSettings" class="btn settings-btn">
+          <svg class="btn-icon" viewBox="0 0 24 24">
+            <path
+              d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.22,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"
+            />
+          </svg>
+          <span class="btn-text">Settings</span>
+        </button>
+
+        <div
+          class="nav-section"
+          style="
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              gap: 8px;
+            "
+          >
+            <button
+              id="navPrev"
+              class="btn nav-btn"
+              style="flex: 1; padding: 10px"
+            >
+              <svg
+                class="btn-icon"
+                viewBox="0 0 24 24"
+                style="width: 16px; height: 16px"
+              >
+                <path
+                  d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"
+                />
+              </svg>
+              <span class="btn-text">Previous</span>
+            </button>
+            <span
+              id="navCounter"
+              style="
+                padding: 0 12px;
+                font-size: 13px;
+                color: #666;
+                min-width: 80px;
+                text-align: center;
+              "
+              >0 of 0</span
+            >
+            <button
+              id="navNext"
+              class="btn nav-btn"
+              style="flex: 1; padding: 10px"
+            >
+              <span class="btn-text">Next</span>
+              <svg
+                class="btn-icon"
+                viewBox="0 0 24 24"
+                style="width: 16px; height: 16px"
+              >
+                <path
+                  d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="aiResult"
+        class="status"
+        style="
+          display: none;
+          background: rgba(255, 255, 255, 0.8);
+          white-space: pre-wrap;
+          margin-top: 12px;
+          font-size: 13px;
+          line-height: 1.5;
+          color: #333;
+        "
+      ></div>
+
+      <div id="status" class="status"></div>
+    </div>
+    <script src="sidebar.js"></script>
+  </body>
+</html>

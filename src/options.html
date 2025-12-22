@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Siso Copier — Settings</title>
+    <style>
+      :root {
+        --primary: #3b82f6;
+        --primary-hover: #2563eb;
+        --bg-glass: rgba(255, 255, 255, 0.7);
+        --bg-panel: rgba(255, 255, 255, 0.4);
+        --border: rgba(255, 255, 255, 0.4);
+        --text: #1a1a1a;
+        --text-secondary: #666666;
+        --sidebar-width: 260px;
+        --danger: #ef4444;
+      }
+
+      body.dark-mode {
+        --bg-glass: #2e323a;
+        --bg-panel: #1e2024;
+        --border: rgba(255, 255, 255, 0.15);
+        --text: #e5e5e5;
+        --text-secondary: #9ca3af;
+        --primary: #5686e1;
+        --primary-hover: #99bdf2;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Ubuntu, sans-serif;
+        background: linear-gradient(135deg, #f0f2f5 0%, #e1e4e8 100%);
+        height: 100vh;
+        color: var(--text);
+        overflow: hidden;
+      }
+
+      body.dark-mode {
+        background: linear-gradient(135deg, #2e323a 0%, #1e2024 100%);
+      }
+
+      .app-container {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      /* Sidebar Styles */
+      .sidebar {
+        width: var(--sidebar-width);
+        background: var(--bg-glass);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-right: 2px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        padding: 24px;
+        flex-shrink: 0;
+      }
+
+      .logo-area {
+        margin-bottom: 32px;
+        padding: 0 12px;
+      }
+
+      .logo-area h1 {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      .nav-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .nav-item {
+        padding: 12px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-secondary);
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border: 2px solid transparent;
+      }
+
+      .nav-item:hover {
+        background: rgba(59, 130, 246, 0.1);
+        color: var(--primary);
+      }
+
+      .nav-item.active {
+        background: rgba(59, 130, 246, 0.15);
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .nav-icon {
+        width: 20px;
+        height: 20px;
+        fill: currentColor;
+      }
+
+      /* Main Content Styles */
+      .main-content {
+        flex: 1;
+        padding: 40px 60px;
+        overflow-y: auto;
+      }
+
+      .content-wrapper {
+        max-width: 800px;
+      }
+
+      .section-header {
+        margin-bottom: 32px;
+      }
+
+      .section-title {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .section-desc {
+        color: var(--text-secondary);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      /* Form Elements */
+      .form-group {
+        background: var(--bg-panel);
+        border: 2px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 24px;
+        backdrop-filter: blur(10px);
+      }
+
+      .form-row {
+        margin-bottom: 20px;
+      }
+
+      .form-row:last-child {
+        margin-bottom: 0;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        font-size: 14px;
+      }
+
+      .hint {
+        display: block;
+        font-size: 12px;
+        color: var(--text-secondary);
+        margin-top: 6px;
+        line-height: 1.4;
+      }
+
+      /* Custom Checkbox */
+      .checkbox-wrapper {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        cursor: pointer;
+      }
+
+      input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        margin-top: 2px;
+        accent-color: var(--primary);
+        cursor: pointer;
+      }
+
+      /* Inputs */
+      .input-text,
+      textarea {
+        width: 100%;
+        max-width: 100%;
+        padding: 10px 14px;
+        border-radius: 8px;
+        border: 2px solid var(--border);
+        background: rgba(255, 255, 255, 0.5);
+        color: var(--text);
+        font-family: inherit;
+        font-size: 14px;
+        transition: all 0.2s;
+        box-sizing: border-box;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 80px;
+      }
+
+      body.dark-mode .input-text,
+      body.dark-mode textarea {
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      .input-text:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+      }
+
+      /* Sliders */
+      .slider-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      input[type="range"] {
+        width: 100%;
+        height: 6px;
+        border-radius: 3px;
+        cursor: pointer;
+        appearance: none;
+        background: #e5e7eb;
+      }
+
+      body.dark-mode input[type="range"] {
+        background: #374151;
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--primary);
+        cursor: pointer;
+        border: 2px solid #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Colors */
+      .color-preview {
+        width: 100%;
+        height: 48px;
+        border-radius: 8px;
+        margin-bottom: 16px;
+        border: 2px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        color: #fff;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Buttons */
+      .btn {
+        padding: 12px 24px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+      }
+
+      .btn:hover {
+        background: var(--primary-hover);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3);
+      }
+
+      .btn:active {
+        transform: translateY(0);
+      }
+
+      .floating-save {
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        z-index: 100;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      #status {
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 12px;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      #status.visible {
+        opacity: 1;
+      }
+
+      /* Tab Content Visibility */
+      .tab-content {
+        display: none;
+        animation: fadeIn 0.3s ease;
+      }
+      .tab-content.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Color Palette */
+      .palette-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .palette-item {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: transform 0.2s;
+      }
+
+      .palette-item:hover {
+        transform: scale(1.1);
+      }
+
+      .palette-item.selected {
+        border-color: var(--text);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="logo-area">
+          <h1>Siso Copier</h1>
+        </div>
+        <nav class="nav-menu">
+          <div class="nav-item active" data-tab="general">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+              <path
+                d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"
+              />
+            </svg>
+            General
+          </div>
+          <div class="nav-item" data-tab="appearance">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+              <path
+                d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"
+              />
+            </svg>
+            Appearance
+          </div>
+          <div class="nav-item" data-tab="shortcuts">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+              <path
+                d="M20 5H4c-1.1 0-1.99.9-1.99 2L2 17c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-9 3h2v2h-2V8zm0 3h2v2h-2v-2zM8 8h2v2H8V8zm0 3h2v2H8v-2zm-1 2H5v-2h2v2zm0-3H5V8h2v2zm9 7H8v-2h8v2zm0-4h-2v-2h2v2zm0-3h-2V8h2v2z"
+              />
+            </svg>
+            Shortcuts
+          </div>
+          <div class="nav-item" data-tab="history">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+              <path
+                d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"
+              />
+            </svg>
+            History
+          </div>
+          <div class="nav-item" data-tab="ai-settings">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+              <path
+                d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z"
+              />
+            </svg>
+            Smart AI
+          </div>
+          <div class="nav-item" data-tab="about">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+              <path
+                d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 9h2V7h-2v2z"
+              />
+            </svg>
+            About & Guide
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <div class="content-wrapper">
+          <!-- General Tab -->
+          <div id="general" class="tab-content active">
+            <div class="section-header">
+              <h2 class="section-title">General Settings</h2>
+              <p class="section-desc">
+                Configure how Siso Copier behaves and filters content.
+              </p>
+            </div>
+
+            <div class="form-group">
+              <label style="margin-bottom: 16px">Theme Preference</label>
+              <div class="form-row">
+                <div class="checkbox-wrapper">
+                  <input
+                    type="radio"
+                    name="themeMode"
+                    value="auto"
+                    id="darkModeAuto"
+                  />
+                  <label for="darkModeAuto" style="margin: 0"
+                    >System Default</label
+                  >
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="checkbox-wrapper">
+                  <input
+                    type="radio"
+                    name="themeMode"
+                    value="light"
+                    id="darkModeLight"
+                  />
+                  <label for="darkModeLight" style="margin: 0"
+                    >Light Mode</label
+                  >
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="checkbox-wrapper">
+                  <input
+                    type="radio"
+                    name="themeMode"
+                    value="dark"
+                    id="darkModeDark"
+                  />
+                  <label for="darkModeDark" style="margin: 0">Dark Mode</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label style="margin-bottom: 16px">Search Behavior</label>
+              <div class="form-row">
+                <div class="checkbox-wrapper">
+                  <input type="checkbox" id="caseSensitive" />
+                  <label for="caseSensitive" style="margin: 0"
+                    >Case Sensitive Matching</label
+                  >
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="checkbox-wrapper">
+                  <input type="checkbox" id="wholeWord" />
+                  <label for="wholeWord" style="margin: 0"
+                    >Match Whole Word Only</label
+                  >
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="checkbox-wrapper">
+                  <input type="checkbox" id="persistHighlights" />
+                  <label for="persistHighlights" style="margin: 0"
+                    >Persist Highlights on Reload</label
+                  >
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="checkbox-wrapper">
+                  <input type="checkbox" id="useRegex" />
+                  <label for="useRegex" style="margin: 0"
+                    >Enable Regular Expressions (Advanced)</label
+                  >
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="checkbox-wrapper">
+                  <input type="checkbox" id="enableReaderImages" />
+                  <label for="enableReaderImages" style="margin: 0"
+                    >Enable Image Actions in Reader Mode</label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Content Filtering</label>
+              <div class="form-row">
+                <label
+                  for="includeSelectors"
+                  style="
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: var(--text-secondary);
+                  "
+                  >Include Selectors (one per line)</label
+                >
+                <textarea
+                  id="includeSelectors"
+                  rows="3"
+                  placeholder="article&#10;.main-content"
+                ></textarea>
+              </div>
+              <div class="form-row">
+                <label
+                  for="excludeSelectors"
+                  style="
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: var(--text-secondary);
+                  "
+                  >Exclude Selectors (one per line)</label
+                >
+                <textarea
+                  id="excludeSelectors"
+                  rows="3"
+                  placeholder="nav&#10;.sidebar&#10;footer"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Appearance Tab -->
+          <div id="appearance" class="tab-content">
+            <div class="section-header">
+              <h2 class="section-title">Appearance</h2>
+              <p class="section-desc">
+                Customize the visual style of your highlights.
+              </p>
+            </div>
+
+            <div class="form-group">
+              <label>Highlight Color</label>
+              <div id="colorPreview" class="color-preview">
+                Siso Copier Highlight
+              </div>
+
+              <div class="form-row">
+                <input
+                  type="color"
+                  id="colorPicker"
+                  style="
+                    width: 100%;
+                    height: 40px;
+                    cursor: pointer;
+                    border-radius: 6px;
+                    border: 2px solid var(--border);
+                  "
+                  value="#3B82F6"
+                />
+              </div>
+
+              <div class="form-row">
+                <label>Hue Balance</label>
+                <input
+                  type="range"
+                  id="colorSlider"
+                  min="0"
+                  max="360"
+                  value="217"
+                />
+              </div>
+
+              <div class="form-row">
+                <div class="checkbox-wrapper">
+                  <input type="checkbox" id="multiColorMode" />
+                  <label for="multiColorMode" style="margin: 0"
+                    >Multi-Color Mode (Auto-rotate colors)</label
+                  >
+                </div>
+              </div>
+
+              <div
+                id="paletteSection"
+                class="form-row"
+                style="display: none; margin-top: 16px"
+              >
+                <label>Active Palette</label>
+                <div id="colorPaletteContainer" class="palette-grid"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Transparency</label>
+              <input
+                type="range"
+                id="transparency"
+                min="0"
+                max="100"
+                value="60"
+              />
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  font-size: 12px;
+                  color: var(--text-secondary);
+                  margin-top: 4px;
+                "
+              >
+                <span>Solid</span>
+                <span>Transparent</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Shortcuts Tab -->
+          <div id="shortcuts" class="tab-content">
+            <div class="section-header">
+              <h2 class="section-title">Keyboard Shortcuts</h2>
+              <p class="section-desc">
+                Click a button and press your desired key combination to change
+                it.
+              </p>
+            </div>
+
+            <div class="form-group">
+              <!-- Clear Highlights Removed -->
+
+              <div
+                class="form-row"
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                "
+              >
+                <label>Copy Page Title</label>
+                <div style="display: flex; gap: 8px">
+                  <input
+                    type="text"
+                    id="copyTitleShortcut"
+                    readonly
+                    class="input-text"
+                    style="width: 140px; text-align: center"
+                  />
+                  <button
+                    class="btn change-shortcut-btn"
+                    data-action="copyTitle"
+                    style="padding: 8px 16px"
+                  >
+                    Edit
+                  </button>
+                </div>
+              </div>
+
+              <div
+                class="form-row"
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                "
+              >
+                <label>Copy Page Content</label>
+                <div style="display: flex; gap: 8px">
+                  <input
+                    type="text"
+                    id="copyContentShortcut"
+                    readonly
+                    class="input-text"
+                    style="width: 140px; text-align: center"
+                  />
+                  <button
+                    class="btn change-shortcut-btn"
+                    data-action="copyContent"
+                    style="padding: 8px 16px"
+                  >
+                    Edit
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Global Modal Shortcuts</label>
+              <p
+                style="
+                  font-size: 13px;
+                  color: var(--text-secondary);
+                  line-height: 1.5;
+                  margin-bottom: 12px;
+                "
+              >
+                These shortcuts are always active when a confirmation modal is
+                open.
+              </p>
+              <div
+                class="form-row"
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                "
+              >
+                <label>Confirm / Delete</label>
+                <code
+                  style="
+                    font-family: monospace;
+                    background: rgba(0, 0, 0, 0.1);
+                    padding: 4px 8px;
+                    border-radius: 4px;
+                    font-size: 12px;
+                  "
+                  >Enter ↵</code
+                >
+              </div>
+              <div
+                class="form-row"
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                "
+              >
+                <label>Cancel / Close</label>
+                <code
+                  style="
+                    font-family: monospace;
+                    background: rgba(0, 0, 0, 0.1);
+                    padding: 4px 8px;
+                    border-radius: 4px;
+                    font-size: 12px;
+                  "
+                  >Esc</code
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Smart AI Tab -->
+          <div id="ai-settings" class="tab-content">
+            <div class="section-header">
+              <h2 class="section-title">Siso Smart AI</h2>
+              <p class="section-desc">
+                Configure AI providers to enable "Summarize" and "Explain"
+                features.
+              </p>
+            </div>
+
+            <div class="form-group">
+              <label>AI Provider</label>
+              <div class="form-row">
+                <select id="aiProvider" class="input-text">
+                  <option value="gemini">Google Gemini (Recommended)</option>
+                  <option value="openai">OpenAI (ChatGPT)</option>
+                  <option value="openrouter">OpenRouter</option>
+                  <option value="fal">Fal.ai</option>
+                  <option value="lmstudio">Local LM Studio</option>
+                  <option value="nano">Chrome Built-in AI (Nano)</option>
+                </select>
+              </div>
+
+              <div class="form-row" id="baseUrlGroup" style="display: none">
+                <label>Base URL</label>
+                <input
+                  type="text"
+                  id="aiBaseUrl"
+                  class="input-text"
+                  placeholder="https://openrouter.ai/api/v1"
+                />
+              </div>
+
+              <div class="form-row">
+                <label>API Key</label>
+                <input
+                  type="password"
+                  id="aiApiKey"
+                  class="input-text"
+                  placeholder="sk-..."
+                />
+                <span class="hint"
+                  >Your key is stored locally in your browser and never
+                  shared.</span
+                >
+                <div class="checkbox-wrapper" style="margin-top: 8px">
+                  <input type="checkbox" id="aiSessionOnly" />
+                  <label
+                    for="aiSessionOnly"
+                    style="
+                      margin: 0;
+                      font-size: 13px;
+                      color: var(--text-secondary);
+                    "
+                    >Store in Session Only (Cleared on browser restart)</label
+                  >
+                </div>
+              </div>
+
+              <div class="form-row">
+                <label>Model Name (Optional)</label>
+                <input
+                  type="text"
+                  id="aiModel"
+                  class="input-text"
+                  placeholder="gemini-1.5-flash / gpt-4o-mini"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Default Prompt Language</label>
+              <div class="form-row">
+                <select id="aiLanguage" class="input-text">
+                  <option value="english">English</option>
+                  <option value="spanish">Spanish</option>
+                  <option value="french">French</option>
+                  <option value="german">German</option>
+                  <option value="japanese">Japanese</option>
+                  <option value="korean">Korean</option>
+                  <option value="chinese">Chinese</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- About Tab -->
+          <div id="about" class="tab-content">
+            <div class="section-header">
+              <h2 class="section-title">Guide & Documentation</h2>
+              <p class="section-desc">Master the Siso Copier workflow.</p>
+            </div>
+
+            <div class="form-group">
+              <h3
+                style="font-size: 16px; margin-bottom: 12px; font-weight: 600"
+              >
+                Core Workflow
+              </h3>
+              <ul
+                style="
+                  padding-left: 20px;
+                  line-height: 1.6;
+                  color: var(--text-secondary);
+                  margin-bottom: 24px;
+                  font-size: 14px;
+                "
+              >
+                <li style="margin-bottom: 8px">
+                  <strong>Sidebar First</strong>: Click the extension icon to
+                  open the Sidebar. This is your command center.
+                </li>
+                <li style="margin-bottom: 8px">
+                  <strong>Copy All</strong>: One-click to copy the Page Title,
+                  Content, and auto-save it to your History.
+                </li>
+                <li style="margin-bottom: 8px">
+                  <strong>Smart Copy</strong>: Use "Copy Page Content" to export
+                  just the clean text (no ads/clutter).
+                </li>
+                <li style="margin-bottom: 8px">
+                  <strong>Reader Mode</strong>: Click any saved item in the
+                  <strong>History</strong> tab to open a beautiful,
+                  distraction-free Reader View.
+                </li>
+              </ul>
+
+              <h3
+                style="font-size: 16px; margin-bottom: 12px; font-weight: 600"
+              >
+                Smart AI Features
+              </h3>
+              <p
+                style="
+                  font-size: 13px;
+                  color: var(--text-secondary);
+                  line-height: 1.5;
+                  margin-bottom: 16px;
+                "
+              >
+                Supercharge your reading with AI. Configure your provider in the
+                <strong>Smart AI</strong> tab.
+              </p>
+              <ul
+                style="
+                  padding-left: 20px;
+                  line-height: 1.6;
+                  color: var(--text-secondary);
+                  margin-bottom: 24px;
+                  font-size: 14px;
+                "
+              >
+                <li style="margin-bottom: 8px">
+                  <strong>Summarize Page</strong>: Get a concise bulleted
+                  summary of the current article.
+                </li>
+                <li style="margin-bottom: 8px">
+                  <strong>Explain Selection</strong>: Highlight any confusing
+                  text and ask AI to explain it in simple terms.
+                </li>
+                <li style="margin-bottom: 8px">
+                  <strong>Privacy First</strong>: Your API keys are stored
+                  locally on your device (or essentially in a temporary session)
+                  and never sent to our servers.
+                </li>
+              </ul>
+
+              <h3
+                style="font-size: 16px; margin-bottom: 12px; font-weight: 600"
+              >
+                Export & History
+              </h3>
+              <ul
+                style="
+                  padding-left: 20px;
+                  line-height: 1.6;
+                  color: var(--text-secondary);
+                  margin-bottom: 24px;
+                  font-size: 14px;
+                "
+              >
+                <li style="margin-bottom: 8px">
+                  <strong>Rich Markdown Export</strong>: Export your history to
+                  Markdown with full formatting (headings, links, images).
+                </li>
+                <li style="margin-bottom: 8px">
+                  <strong>Bulk Management</strong>: Delete specific items or
+                  "Clear All". (Tip: Use <strong>Enter</strong> to confirm
+                  delete, <strong>Esc</strong> to cancel).
+                </li>
+              </ul>
+
+              <h3
+                style="font-size: 16px; margin-bottom: 12px; font-weight: 600"
+              >
+                Version Info
+              </h3>
+              <p
+                style="
+                  font-size: 14px;
+                  color: var(--text-secondary);
+                  line-height: 1.6;
+                "
+              >
+                <strong>Siso Copier v1.2.0</strong><br />
+                Designed for speed and reading comfort.
+              </p>
+              <p
+                style="
+                  font-size: 12px;
+                  color: var(--text-secondary);
+                  margin-top: 12px;
+                "
+              >
+                &copy; 2025 Nickelist Saikia
+              </p>
+            </div>
+          </div>
+
+          <!-- History Tab -->
+          <div id="history" class="tab-content">
+            <div
+              class="section-header"
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: start;
+              "
+            >
+              <div>
+                <h2 class="section-title">History</h2>
+                <p class="section-desc">
+                  Manage your highlights and export them.
+                </p>
+              </div>
+              <div style="display: flex; gap: 8px; align-items: center">
+                <select
+                  id="exportFormat"
+                  class="input-text"
+                  style="width: auto; padding: 6px 12px; font-size: 13px"
+                >
+                  <option value="md">Markdown (.md)</option>
+                  <option value="txt">Text (.txt)</option>
+                  <option value="csv">CSV (.csv)</option>
+                  <option value="json">JSON (.json)</option>
+                </select>
+                <button
+                  id="exportBtn"
+                  class="btn"
+                  style="
+                    background: var(--primary);
+                    padding: 8px 16px;
+                    font-size: 13px;
+                  "
+                >
+                  Export
+                </button>
+                <button
+                  id="clearHistoryBtn"
+                  class="btn"
+                  style="
+                    background: var(--danger);
+                    padding: 8px 16px;
+                    font-size: 13px;
+                  "
+                >
+                  Clear All
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group" style="padding: 16px">
+              <input
+                type="text"
+                id="historySearch"
+                class="input-text"
+                placeholder="Search history..."
+                style="width: 100%"
+              />
+            </div>
+
+            <div
+              id="historyList"
+              style="display: grid; grid-template-columns: 1fr; gap: 16px"
+            >
+              <!-- History items will be injected here -->
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <div class="floating-save">
+        <div id="status">Settings Saved</div>
+        <button
+          id="save"
+          class="btn"
+          style="box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2)"
+        >
+          Save Changes
+        </button>
+      </div>
+    </div>
+    <script src="options.js"></script>
+  </body>
+</html>
