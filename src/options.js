@@ -784,7 +784,13 @@ async function loadHistory() {
     const result = await chrome.storage.local.get(["kh_global_history"]);
     allHistoryItems = result.kh_global_history || [];
     allHistoryItems.sort((a, b) => b.lastUpdated - a.lastUpdated);
-    renderHistory(allHistoryItems);
+    // Respect current filter
+    const searchInput = $("historySearch");
+    if (searchInput && searchInput.value) {
+      filterHistory(searchInput.value);
+    } else {
+      renderHistory(allHistoryItems);
+    }
   } catch (error) {
     console.error("Error loading history:", error);
   }
@@ -813,7 +819,17 @@ async function renderHistory(items) {
     card.style.padding = "20px";
     card.style.cursor = "default";
 
-    const date = new Date(item.lastUpdated).toLocaleDateString();
+    let date = "Unknown Date";
+    try {
+      if (item.lastUpdated) {
+        const d = new Date(item.lastUpdated);
+        if (!isNaN(d.getTime())) {
+          date = d.toLocaleDateString();
+        }
+      }
+    } catch (e) {
+      console.warn("Invalid date for item:", item);
+    }
     let domain = "unknown";
     try {
       domain = new URL(item.url).hostname.replace("www.", "");

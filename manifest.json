@@ -37,15 +37,6 @@
         "<all_urls>"
       ],
       "js": [
-        "src/modules/SisoState.js",
-        "src/modules/SisoUtils.js",
-        "src/modules/SisoUI.js",
-        "src/modules/SisoStorage.js",
-        "src/modules/SisoExtractor.js",
-        "src/modules/SisoHighlighter.js",
-        "src/modules/SisoNavigation.js",
-        "src/modules/SisoActions.js",
-        "src/modules/SisoShortcuts.js",
         "src/content.js"
       ],
       "css": [
@@ -55,13 +46,6 @@
     }
   ],
   "commands": {
-    "clear-highlights": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+X",
-        "mac": "Command+Shift+X"
-      },
-      "description": "Clear all highlights"
-    },
     "nav-next": {
       "suggested_key": {
         "default": "Ctrl+Shift+N",

@@ -1,65 +1,67 @@
-# Siso Copier - Advanced Text Highlighter & Productivity Tool
+# Siso Copier - Advanced Text Highlighter & Research Assistant
 
-Streamline your web research with **Siso Copier**, the ultimate Chrome extension for efficient content gathering. Highlight keywords instantly across any page, auto-copy them with context, and maintain an organized history of your findings.
+**Siso Copier** is the ultimate Chrome extension for efficient web research. Instantly highlight keywords, capture context-aware content, and leverage AI to summarize or explain complex topics—all without leaving your browser.
 
 ## Key Features
 
-- **Instant Highlighting**: Quickly mark all occurrences of selected keywords on any webpage.
-- **Context-Aware Copy**: Automatically copy highlighted text along with the page title and source URL.
-- **Unified Sidebar**: Access all your highlights and tools from a sleek, non-intrusive side panel.
-- **Smart AI Assistant**: Summarize entire pages or explain selected text using your favorite AI model.
-- **Multi-Provider Support**: Works with Google Gemini, OpenAI, OpenRouter, Fal.ai, Local LM Studio, and Chrome's Built-in AI (Nano).
-- **Format-Preserving Export**: Export highlights to Markdown and HTML.
-- **Persistent History**: Never lose a piece of information; all your copied highlights are saved in a searchable dashboard.
-- **Keyboard Shortcuts**: Power user features for navigating and copying page content.
+### Smart Highlighting & Copying
 
-## Smart AI Features
+- **Instant Highlighting**: Automatically highlight all occurrences of keywords on any webpage.
+- **Context-Aware Copy**: Copy text with its source URL and page title automatically.
+- **Smart Extraction**: "Copy Page Content" extracts only the article text, stripping away ads, navigation, and clutter.
+- **Unified Sidebar**: Access all tools from a sleek, non-intrusive side panel.
 
-Siso Copier includes a powerful AI assistant to help you synthesize information.
+### AI Research Assistant
 
-### Features
+- **Summarize Page**: Get a concise, bulleted summary of any article in seconds.
+- **Explain Selection**: Highlight confusing text and get a simple explanation powered by AI.
+- **Multi-Model Support**: Works with:
+  - **Google Gemini** (Recommended, Free Tier available)
+  - **OpenAI** (GPT-4o-mini, etc.)
+  - **OpenRouter** (Claude 3.5 Sonnet, Llama 3, etc.)
+  - **Fal.ai**
+  - **Local LM Studio** (Run local LLMs on your machine)
+  - **Chrome Built-in AI** (Gemini Nano)
 
-- **Summarize Page**: Generates a concise bulleted summary of the current article.
-- **Explain Selection**: Provides a simple explanation for any text loop selected on the page.
+### Distraction-Free Reader Mode
 
-### Setup
+- **Clean Reading Experience**: Convert any saved article into a clean, readable format.
+- **Image Support**: Now includes article images in Reader Mode (and Markdown exports).
+- **Dark Mode**: Automatic or manual dark mode for comfortable reading at night.
 
-1.  Open **Settings** (Click the Settings icon in the Sidebar).
-2.  Navigate to the **Smart AI** tab.
-3.  Choose your **AI Provider** and enter your **API Key**.
+### History & Export
 
-### Supported Providers
+- **Persistent History**: Every highlight and copied clip is saved locally.
+- **Rich Markdown Export**: Export your research to Markdown files—perfect for Obsidian, Notion, or GitHub. Includes images!
+- **Multiple Formats**: Also supports export to CSV, JSON, and Text.
 
-- **Google Gemini (Recommended)**: Fast, free tier available.
-- **OpenAI**: Uses GPT-4o-mini or your preferred model.
-- **OpenRouter**: Access Claude 3.5 Sonnet, Llama 3, etc.
-- **Local LM Studio**: Use local models running on your machine (Set Base URL to `http://localhost:1234/v1`).
-- **Chrome Built-in AI**: Uses the experimental Gemini Nano model running locally in Chrome (Requires Chrome Canary or specific flags enabled).
+## Installation
 
-### Privacy & Security: API Key Storage
+1. Download the latest release or clone this repository.
+2. Open Chrome and navigate to `chrome://extensions`.
+3. Enable **Developer Mode** (top right).
+4. Click **Load unpacked** and select the `Siso` directory.
 
-Your API keys are stored **exclusively** on your local device. Siso Copier does **not** have a backend server and never transmits your keys to us.
+## Configuration
 
-**Storage Options:**
+1. Click the extension icon to open the **Sidebar**.
+2. Click **Settings** (gear icon).
+3. **Appearance**: Customize highlight colors and transparency.
+4. **Smart AI**: Select your provider and enter your API Key.
+5. **Shortcuts**: Customize keyboard shortcuts for lightning-fast research.
 
-1.  **Sync Storage (Default)**:
-    - Keys are stored in `chrome.storage.sync`.
-    - **Pros**: Syncs across your signed-in Chrome browsers.
-    - **Cons**: Stored persistently until deleted.
-2.  **Session Only**:
-    - Check "Store in Session Only".
-    - **Pros**: Keys are deleted automatically when you close Chrome. Maximum security.
-    - **Cons**: You must re-enter the key every time you restart browser.
+> **Privacy Note**: Your API keys are stored **locally** on your device (Sync or Session storage). Siso Copier has no backend server and never transmits your data to us.
 
-**How to Remove Keys:**
+## Keyboard Shortcuts
 
-- Simply clear the API Key field in Settings and click **Save**.
-- This will overwrite any stored key with an empty string, effectively deleting it from storage.
-
-## About the Author
-
-Developed by **Nickelist Saikia**.
+- `Ctrl+Shift+E` (Mac: `Cmd+Shift+E`): Copy Full Page Content
+- `Ctrl+Shift+T` (Mac: `Cmd+Shift+T`): Copy Page Title
+- `Ctrl+Shift+N`: Next Highlight
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+**Developed by Nickelist Saikia**

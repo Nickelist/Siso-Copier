@@ -288,56 +288,6 @@ document.getElementById("copyContent").addEventListener("click", async () => {
   }
 });
 
-// Export to Markdown
-document
-  .getElementById("exportMarkdown")
-  .addEventListener("click", async () => {
-    try {
-      const response = await sendMessageToTab({ type: "KH_EXPORT_MARKDOWN" });
-
-      if (response && response.ok && response.markdown) {
-        // Create download
-        const blob = new Blob([response.markdown], {
-          type: "text/markdown;charset=utf-8",
-        });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-
-        // Get page title for filename
-        const tab = await getCurrentTab();
-        const pageTitle = tab.title || "Untitled Page";
-        const filename = `${pageTitle
-          .replace(/[^a-z0-9]/gi, "_")
-          .substring(0, 50)}_${new Date().toISOString().split("T")[0]}.md`;
-
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-
-        showStatus("Markdown exported successfully");
-      } else {
-        showStatus("No highlights to export", true);
-      }
-    } catch (error) {
-      // Provide user-friendly error messages
-      const errorMsg = error.message || String(error);
-      if (
-        errorMsg.includes("Cannot interact") ||
-        errorMsg.includes("Content script not available") ||
-        errorMsg.includes("Receiving end does not exist") ||
-        errorMsg.includes("Could not establish connection")
-      ) {
-        showStatus("This action is not available on this page type", true);
-      } else {
-        console.error("Error exporting to Markdown:", error);
-        showStatus("Error exporting to Markdown", true);
-      }
-    }
-  });
-
 // Open settings
 document.getElementById("openSettings").addEventListener("click", () => {
   chrome.runtime.openOptionsPage();

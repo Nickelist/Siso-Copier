@@ -20,13 +20,10 @@ chrome.runtime.onInstalled.addListener(async () => {
         enabled: true,
       });
     } catch (err) {
-      // console.log('Side panel initialization (optional):', err.message);
-      // If sidebar fails, set popup as fallback
-      chrome.action.setPopup({ popup: "src/popup.html" });
+      console.warn("Error setting side panel options:", err);
     }
   } else {
-    // Side panel API not available, use popup
-    chrome.action.setPopup({ popup: "src/popup.html" });
+    console.warn("Side panel API not available.");
   }
 
   // Allow clicking the extension icon to open the side panel (Chrome 116+)
@@ -37,7 +34,7 @@ chrome.runtime.onInstalled.addListener(async () => {
   }
 });
 
-// Open side panel when extension icon is clicked (fallback to popup if sidebar fails)
+// Open side panel when extension icon is clicked
 chrome.action.onClicked.addListener(async (tab) => {
   // Ensure we have a valid tab object
   if (!tab || !tab.windowId) {
@@ -58,7 +55,6 @@ chrome.action.onClicked.addListener(async (tab) => {
       tab.url.startsWith("chrome-extension://") ||
       tab.url.startsWith("edge://"))
   ) {
-    // console.log('Side panel not available on this page type');
     return;
   }
 
@@ -98,7 +94,6 @@ chrome.commands.onCommand.addListener(async (command, tab) => {
         break;
     }
   } catch (error) {
-    // console.log('Could not send command to tab:', error.message);
     // Try to inject the content script if it's not loaded
     try {
       await chrome.scripting.executeScript({
@@ -116,12 +111,8 @@ chrome.commands.onCommand.addListener(async (command, tab) => {
               await chrome.tabs.sendMessage(tab.id, { type: "KH_NAV_PREV" });
               break;
           }
-        } catch (retryError) {
-          console.log("Retry failed:", retryError.message);
-        }
+        } catch (retryError) {}
       }, 100);
-    } catch (injectError) {
-      console.log("Could not inject content script:", injectError.message);
-    }
+    } catch (injectError) {}
   }
 });
