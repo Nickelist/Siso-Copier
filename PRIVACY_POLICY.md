@@ -66,4 +66,4 @@ We **do not** use third-party analytics trackers (like Google Analytics, Mixpane
 
 If you have any questions about this Privacy Policy, please contact us at:
 **Email**: <Nickelist.Saikia@gmail.com>
-**GitHub**: [Siso Copier](https://github.com/Nickelist/Siso-Copier)(https://github.com/Nickelist/Siso-Copier)
+**GitHub**: [Siso Copier](https://github.com/Nickelist/Siso-Copier)
