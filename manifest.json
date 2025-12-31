@@ -9,8 +9,7 @@
     "scripting",
     "storage",
     "clipboardWrite",
-    "sidePanel",
-    "windows"
+    "sidePanel"
   ],
   "host_permissions": [
     "<all_urls>"
