@@ -230,6 +230,7 @@ async function load() {
       $("aiModel").value = prefs.aiModel || "";
       $("aiBaseUrl").value = prefs.aiBaseUrl || "";
       $("aiLanguage").value = prefs.aiLanguage || "english";
+      $("aiCustomPrompt").value = prefs.customSystemPrompt || "";
 
       // Handle API Key (Check Session first, then Sync)
       if (prefs.aiApiKey) {
@@ -306,6 +307,7 @@ function save() {
     aiModel: $("aiModel").value,
     aiBaseUrl: $("aiBaseUrl").value,
     aiLanguage: $("aiLanguage").value,
+    customSystemPrompt: $("aiCustomPrompt").value,
   };
 
   // API Key Handling

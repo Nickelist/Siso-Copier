@@ -196,6 +196,77 @@ async function saveToHistory(tab, content, html = null) {
   await chrome.storage.local.set({ kh_global_history: globalHistory });
 }
 
+// Helper: Convert HTML to simple Markdown
+function convertToMarkdown(html) {
+  if (!html) return "";
+  let text = html;
+
+  // Remove scripts, styles, and comments
+  text = text.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gim, "");
+  text = text.replace(/<style\b[^>]*>[\s\S]*?<\/style>/gim, "");
+  text = text.replace(/<!--[\s\S]*?-->/gim, "");
+
+  // Headers
+  text = text.replace(/<h1[^>]*>(.*?)<\/h1>/gim, "\n# $1\n");
+  text = text.replace(/<h2[^>]*>(.*?)<\/h2>/gim, "\n## $1\n");
+  text = text.replace(/<h3[^>]*>(.*?)<\/h3>/gim, "\n### $1\n");
+
+  // Links: <a href="url">text</a> -> [text](url)
+  text = text.replace(/<a[^>]*href="([^"]*)"[^>]*>(.*?)<\/a>/gim, "[$2]($1)");
+
+  // Lists
+  text = text.replace(/<li[^>]*>(.*?)<\/li>/gim, "\n- $1");
+  text = text.replace(/<ul[^>]*>/gim, "\n");
+  text = text.replace(/<\/ul>/gim, "\n");
+
+  // Bold/Italic
+  text = text.replace(/<(b|strong)>(.*?)<\/\1>/gim, "**$2**");
+  text = text.replace(/<(i|em)>(.*?)<\/\1>/gim, "*$2*");
+
+  // Paragraphs and breaks
+  text = text.replace(/<p[^>]*>/gim, "\n");
+  text = text.replace(/<\/p>/gim, "\n");
+  text = text.replace(/<br\s*\/?>/gim, "\n");
+  text = text.replace(/<hr\s*\/?>/gim, "\n---\n");
+
+  // Strip remaining HTML tags
+  text = text.replace(/<[^>]+>/g, "");
+
+  // Clean up whitespace: remove multiple newlines, trim lines
+  text = text
+    .split("\n")
+    .map((line) => line.trim())
+    .join("\n");
+  text = text.replace(/\n{3,}/g, "\n\n");
+
+  // Decode common entities
+  text = text
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"');
+
+  return text.trim();
+}
+
+// Helper: Get formatted content
+function getFormattedContent(response) {
+  const formatSelector = document.getElementById("copyFormat");
+  const format = formatSelector ? formatSelector.value : "text";
+
+  if (format === "html") {
+    return { text: response.pageHTML || response.pageContent, type: "HTML" };
+  } else if (format === "markdown") {
+    return {
+      text: convertToMarkdown(response.pageHTML || response.pageContent),
+      type: "Markdown",
+    };
+  } else {
+    return { text: response.pageContent, type: "Text" };
+  }
+}
+
 // Copy All (Title + Content)
 document.getElementById("copyAll").addEventListener("click", async () => {
   try {
@@ -204,14 +275,24 @@ document.getElementById("copyAll").addEventListener("click", async () => {
     const response = await sendMessageToTab({ type: "KH_GET_PAGE_CONTENT" });
 
     if (response && response.success) {
-      const content = response.pageContent;
-      const combined = `${title}\n\n${content}`;
+      const { text, type } = getFormattedContent(response);
+
+      // Prefix title for Text/Markdown, wrap for HTML
+      let combined;
+      if (type === "HTML") {
+        combined = `<h1>${title}</h1>\n${text}`;
+      } else if (type === "Markdown") {
+        combined = `# ${title}\n\n${text}`;
+      } else {
+        combined = `${title}\n\n${text}`;
+      }
+
       const ok = await copyToClipboard(combined);
 
       if (ok) {
-        showStatus("Copied Title & Content");
-        // Save original content to history (not combined, to avoid double title in reader)
-        await saveToHistory(tab, content, response.pageHTML);
+        showStatus(`Copied All as ${type}`);
+        // Save original plain text/HTML for history/reader consistency
+        await saveToHistory(tab, response.pageContent, response.pageHTML);
       } else {
         showStatus("Failed to copy all", true);
       }
@@ -224,7 +305,7 @@ document.getElementById("copyAll").addEventListener("click", async () => {
       errorMsg.includes("Cannot interact") ||
       errorMsg.includes("Content script not available")
     ) {
-      showStatus("This action is not available on this page type", true);
+      showStatus("Page protected or unavailable", true);
     } else {
       console.error("Error copy all:", error);
       showStatus("Error copying all", true);
@@ -232,16 +313,15 @@ document.getElementById("copyAll").addEventListener("click", async () => {
   }
 });
 
-// Copy page title (title only)
+// Copy page title (Format independent mostly, but let's respect logic if needed in future)
 document.getElementById("copyTitle").addEventListener("click", async () => {
   try {
     const tab = await getCurrentTab();
     const title = tab.title || "Untitled Page";
-    const copyText = title;
-
-    const success = await copyToClipboard(copyText);
+    // Title is just text usually
+    const success = await copyToClipboard(title);
     if (success) {
-      showStatus(`Copied: "${title}"`);
+      showStatus(`Copied Title`);
     } else {
       showStatus("Failed to copy title", true);
     }
@@ -251,20 +331,19 @@ document.getElementById("copyTitle").addEventListener("click", async () => {
   }
 });
 
-// Copy page content (request from content script, then write here to avoid NotAllowedError)
+// Copy page content
 document.getElementById("copyContent").addEventListener("click", async () => {
   try {
     const response = await sendMessageToTab({ type: "KH_GET_PAGE_CONTENT" });
 
     if (response && response.success) {
-      const copyText = response.pageContent;
-      const ok = await copyToClipboard(copyText);
+      const { text, type } = getFormattedContent(response);
+      const ok = await copyToClipboard(text);
       if (ok) {
-        showStatus(`Copied page content (${response.wordCount} words)`);
+        showStatus(`Copied Content as ${type}`);
 
-        // Manually save this content to history storage so it appears in Options
         const tab = await getCurrentTab();
-        await saveToHistory(tab, copyText, response.pageHTML);
+        await saveToHistory(tab, response.pageContent, response.pageHTML);
       } else {
         showStatus("Failed to copy content", true);
       }
@@ -272,15 +351,12 @@ document.getElementById("copyContent").addEventListener("click", async () => {
       showStatus("Failed to copy content", true);
     }
   } catch (error) {
-    // Provide user-friendly error messages
     const errorMsg = error.message || String(error);
     if (
       errorMsg.includes("Cannot interact") ||
-      errorMsg.includes("Content script not available") ||
-      errorMsg.includes("Receiving end does not exist") ||
-      errorMsg.includes("Could not establish connection")
+      errorMsg.includes("Content script not available")
     ) {
-      showStatus("This action is not available on this page type", true);
+      showStatus("Page protected or unavailable", true);
     } else {
       console.error("Error copying content:", error);
       showStatus("Error copying content", true);
@@ -435,6 +511,26 @@ async function loadDarkMode() {
 document.addEventListener("DOMContentLoaded", () => {
   loadUserColor();
   loadDarkMode();
+
+  // Tab Switching Logic
+  const tabs = document.querySelectorAll(".tab-btn");
+  const contents = document.querySelectorAll(".tab-content");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      // Remove active class from all
+      tabs.forEach((t) => t.classList.remove("active"));
+      contents.forEach((c) => c.classList.remove("active"));
+
+      // Add active to current
+      tab.classList.add("active");
+      const targetId = `tab-${tab.dataset.tab}`;
+      const targetContent = document.getElementById(targetId);
+      if (targetContent) {
+        targetContent.classList.add("active");
+      }
+    });
+  });
   if (navSection) {
     updateNavUI();
     // Update nav UI periodically, but only if we're on a valid page
@@ -462,31 +558,92 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- SISO SMART AI LOGIC ---
   const aiSummarizeBtn = document.getElementById("aiSummarize");
+  const aiKeyInsightsBtn = document.getElementById("aiKeyInsights");
+  const aiQuizBtn = document.getElementById("aiQuiz");
+
   const aiExplainBtn = document.getElementById("aiExplain");
+
+  const aiRewriteBtn = document.getElementById("aiRewrite");
+  const rewriteTone = document.getElementById("rewriteTone");
+  const rewriteCustomInput = document.getElementById("rewriteCustomInput");
+
+  const aiChatInput = document.getElementById("aiChatInput");
+  const aiChatSubmit = document.getElementById("aiChatSubmit");
+
   const aiResult = document.getElementById("aiResult");
 
-  if (aiSummarizeBtn) {
-    aiSummarizeBtn.addEventListener("click", async () => {
-      await handleAiAction("summarize");
+  if (rewriteTone) {
+    rewriteTone.addEventListener("change", () => {
+      if (rewriteCustomInput) {
+        rewriteCustomInput.style.display =
+          rewriteTone.value === "custom" ? "block" : "none";
+      }
     });
+  }
+
+  if (aiSummarizeBtn) {
+    aiSummarizeBtn.addEventListener("click", () => handleAiAction("summarize"));
+  }
+  if (aiKeyInsightsBtn) {
+    aiKeyInsightsBtn.addEventListener("click", () =>
+      handleAiAction("key_insights")
+    );
+  }
+  if (aiQuizBtn) {
+    aiQuizBtn.addEventListener("click", () => handleAiAction("quiz"));
   }
 
   if (aiExplainBtn) {
-    aiExplainBtn.addEventListener("click", async () => {
-      await handleAiAction("explain");
+    aiExplainBtn.addEventListener("click", () => handleAiAction("explain"));
+  }
+
+  if (aiRewriteBtn) {
+    aiRewriteBtn.addEventListener("click", () => {
+      const tone = rewriteTone ? rewriteTone.value : "professional";
+      const customPersona = rewriteCustomInput ? rewriteCustomInput.value : "";
+      handleAiAction("rewrite", { tone, customPersona });
     });
   }
 
-  async function handleAiAction(action) {
+  if (aiChatSubmit && aiChatInput) {
+    const chatHandler = () => {
+      const query = aiChatInput.value.trim();
+      if (query) handleAiAction("chat", { query });
+    };
+    aiChatSubmit.addEventListener("click", chatHandler);
+    aiChatInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") chatHandler();
+    });
+  }
+
+  const toggleInspectorBtn = document.getElementById("toggleInspector");
+  if (toggleInspectorBtn) {
+    toggleInspectorBtn.addEventListener("click", async () => {
+      showStatus("Toggle Inspector Mode...");
+      const response = await sendMessageToTab({ type: "KH_TOGGLE_INSPECTOR" });
+      if (response && response.success) {
+        const state = response.isActive
+          ? "Active (Click to Remove)"
+          : "Inactive";
+        showStatus(`Inspector: ${state}`, false);
+        toggleInspectorBtn.style.border = response.isActive
+          ? "2px solid #0d9488"
+          : "none";
+      }
+    });
+  }
+
+  async function handleAiAction(action, metadata = {}) {
     // 1. Get Settings
     const settings = await chrome.storage.sync.get({
       aiProvider: "gemini",
       aiApiKey: "",
       aiModel: "",
       aiLanguage: "english",
+      customSystemPrompt: "",
     });
 
-    // Check session storage for key if not in sync
+    // Check session storage
     if (!settings.aiApiKey) {
       const session = await chrome.storage.session.get("aiApiKey");
       if (session.aiApiKey) {
@@ -506,32 +663,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. Get Content
     let textToProcess = "";
+    const isSelectionAction = ["explain", "rewrite", "chat"].includes(action);
+
     try {
-      if (action === "summarize") {
+      if (!isSelectionAction) {
+        // Page Actions (Summarize, Insights, Quiz)
         showStatus("Extracting page content...");
         const response = await sendMessageToTab({
           type: "KH_GET_PAGE_CONTENT",
         });
         if (response && response.success) {
           textToProcess = response.pageContent;
-          // Truncate if too long (approx 12k chars is safe for most standard models)
-          if (textToProcess.length > 12000) {
+          if (textToProcess.length > 15000) {
             textToProcess =
-              textToProcess.substring(0, 12000) + "... (truncated)";
+              textToProcess.substring(0, 15000) + "... (truncated)";
           }
         } else {
           throw new Error("Could not extract page content");
         }
-      } else if (action === "explain") {
+      } else {
+        // Selection Actions
         showStatus("Getting selected text...");
-        // For explain, we need the selected text.
-        // We can reuse KH_HIGHLIGHT logic or a new KH_GET_SELECTION command.
-        // Let's assume sendMessageToTab with a script exec is easiest or existing command.
-        // Actually background handles 'highlight-selected' using executeScript.
-        // We can do the same here using scripting API if we have permissions, or ask background.
-        // sidebar.js has permission to executeScript in sendMessageToTab fallback, but direct is better.
-
-        // Simpler: Ask content script for selection
         const [tab] = await chrome.tabs.query({
           active: true,
           currentWindow: true,
@@ -541,15 +693,17 @@ document.addEventListener("DOMContentLoaded", () => {
           target: { tabId: tab.id },
           func: () => window.getSelection().toString(),
         });
+
         textToProcess = selectionResult[0].result;
 
         if (!textToProcess || !textToProcess.trim()) {
-          showStatus("No text selected to explain", true);
+          // Fallback to clipboard if selection is empty? Or just error.
+          showStatus("No text selected to process", true);
           return;
         }
 
-        if (textToProcess.length > 2000) {
-          textToProcess = textToProcess.substring(0, 2000);
+        if (textToProcess.length > 3000) {
+          textToProcess = textToProcess.substring(0, 3000);
         }
       }
     } catch (e) {
@@ -561,7 +715,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. UI Loading
     if (aiResult) {
       aiResult.style.display = "block";
-      aiResult.textContent = "Thinking...";
+      aiResult.innerHTML = "<div class='pulsing-loader'>Thinking...</div>"; // We can add CSS for this later or just text
       aiResult.scrollIntoView({ behavior: "smooth" });
     }
 
@@ -570,12 +724,64 @@ document.addEventListener("DOMContentLoaded", () => {
     let systemPrompt = "";
     let userPrompt = "";
 
-    if (action === "summarize") {
-      systemPrompt = `You are a helpful assistant. Summarize the following text in ${lang}. Use bullet points and keep it concise.`;
-      userPrompt = textToProcess;
-    } else {
-      systemPrompt = `You are a helpful teacher. Explain the following text in simple terms in ${lang}.`;
-      userPrompt = textToProcess;
+    switch (action) {
+      case "summarize":
+        systemPrompt = `You are a professional research assistant. Summarize the text in ${lang}. Use bullet points. Highlight main arguments. Keep it concise.`;
+        userPrompt = textToProcess;
+        break;
+      case "key_insights":
+        systemPrompt = `Extract the hard facts from the text in ${lang}.
+            Output Format:
+            - **Key Stats**: (Numbers, percentages, revenue)
+            - **Dates/Events**: (Timeline of important dates)
+            - **Action Items**: (What needs to be done?)
+            If a category is empty, skip it. Be extremely direct.`;
+        userPrompt = textToProcess;
+        break;
+      case "quiz":
+        systemPrompt = `Generate 3 multiple-choice questions based on the text in ${lang}.
+            Format:
+            **Q1:** [Question]
+            - A) [Option]
+            - B) [Option]
+            - C) [Option]
+            **Answer:** [Correct Letter]
+            (Repeat for Q2, Q3)`;
+        userPrompt = textToProcess;
+        break;
+      case "explain":
+        systemPrompt = `Explain this selected text in ${lang} as if to a 12-year-old. Use an analogy if helpful. Define technical terms.`;
+        userPrompt = textToProcess;
+        break;
+      case "rewrite":
+        let rewriteInstruction = metadata.tone || "professional";
+        if (metadata.tone === "custom" && metadata.customPersona) {
+          rewriteInstruction = `in the style of: ${metadata.customPersona}`;
+        }
+
+        systemPrompt = `Rewrite the selected text to be **${rewriteInstruction}**. Maintain usage of ${lang}. Output ONLY the rewritten text, nothing else.`;
+        userPrompt = textToProcess;
+        break;
+      case "chat":
+        systemPrompt = `You are a knowledgeable assistant.
+        
+        CONTEXT from user selection:
+        """${textToProcess}"""
+        
+        INSTRUCTIONS:
+        1. Answer the user's question based on the context above.
+        2. CRITICAL: If the answer is NOT in the context, you MUST use your own general knowledge to answer. DO NOT refuse to answer. DO NOT say "The text does not mention...". Just answer contentfully.
+        3. Be brief and direct.`;
+        userPrompt = metadata.query;
+        break;
+    }
+
+    // Append Custom System Prompt if it exists
+    if (
+      settings.customSystemPrompt &&
+      settings.customSystemPrompt.trim() !== ""
+    ) {
+      systemPrompt += `\n\nIMPORTANT SYSTEM INSTRUCTION: ${settings.customSystemPrompt}`;
     }
 
     // 5. Call API
@@ -597,12 +803,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // 6. Show Result
       if (aiResult) {
-        // Simple markdown parsing (bold/italic/bullets)
+        // Basic Markdown to HTML
         let formatted = resultText
           .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-          .replace(/\*(.*?)\*/g, "<em>$1</em>")
-          .replace(/## (.*?)\n/g, "<h4>$1</h4>")
-          .replace(/- (.*?)\n/g, "• $1<br>");
+          .replace(/\n/g, "<br>");
+
+        // Cleanup extra breaks
+        formatted = formatted.replace(/(<br>\s*){3,}/g, "<br><br>");
 
         aiResult.innerHTML = formatted;
         showStatus("Done!", false);

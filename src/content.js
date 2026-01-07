@@ -1563,14 +1563,208 @@ function getBodyTextFallback() {
 // MESSAGE HANDLING (Chrome Runtime API)
 // ----------------------------------------------------------------------------
 // Listen for background messages
-chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
+// --- Visual Inspector Mode ---
+let isInspectorActive = false;
+let highlighedElement = null;
+
+function toggleInspector() {
+  isInspectorActive = !isInspectorActive;
+
+  if (isInspectorActive) {
+    document.body.style.cursor = "crosshair";
+
+    // Create and inject style to disable interaction with iframes/ads so we can click them
+    const style = document.createElement("style");
+    style.id = "kh-inspector-style";
+    style.textContent = `
+      iframe, embed, object { pointer-events: none !important; }
+      a { pointer-events: none !important; cursor: crosshair !important; }
+      * { cursor: crosshair !important; }
+      .kh-highlight-blur {
+        outline: 2px solid #0d9488 !important;
+        box-shadow: 0 0 15px 5px rgba(13, 148, 136, 0.4) !important;
+        filter: grayscale(0.2) contrast(1.1) brightness(1.1) !important;
+        transition: all 0.2s ease !important;
+        position: relative !important; 
+        z-index: 999990 !important;
+      }
+    `;
+    document.head.appendChild(style);
+
+    document.addEventListener("mouseover", handleInspectorHover, true);
+    document.addEventListener("click", handleInspectorClick, true);
+    createInspectorToast(
+      "Inspector Active. Click elements to remove. (Links & Iframes disabled)"
+    );
+  } else {
+    document.body.style.cursor = "default";
+
+    // Remove inspector styles
+    const style = document.getElementById("kh-inspector-style");
+    if (style) style.remove();
+
+    document.removeEventListener("mouseover", handleInspectorHover, true);
+    document.removeEventListener("click", handleInspectorClick, true);
+    if (highlighedElement) {
+      highlighedElement.classList.remove("kh-highlight-blur");
+      highlighedElement = null;
+    }
+    removeInspectorToast();
+  }
+  return isInspectorActive;
+}
+
+function handleInspectorHover(e) {
+  if (!isInspectorActive) return;
+  e.preventDefault();
+  e.stopPropagation();
+
+  if (highlighedElement) {
+    highlighedElement.classList.remove("kh-highlight-blur");
+  }
+
+  highlighedElement = e.target;
+  highlighedElement.classList.add("kh-highlight-blur");
+}
+
+function handleInspectorClick(e) {
+  if (!isInspectorActive) return;
+  e.preventDefault();
+  e.stopPropagation();
+
+  const target = e.target;
+
+  // 1. Visual Effect: Particle Explosion
+  createParticleExplosion(target);
+
+  // 2. Hide Element (immediately visually, fully removed after delay to prevent layout jump during anim)
+  // Use visibility:hidden to keep layout stable for a split second, or just display:none
+  // display:none is better for "removing" ads instantly. The particles will persist on top.
+  target.style.display = "none";
+
+  // Generate Selector
+  const selector = generateSelector(target);
+
+  // Save to Storage
+  chrome.storage.sync.get({ khExcludeSelectors: "" }, (data) => {
+    let current = data.khExcludeSelectors || "";
+    if (current) current += "\n";
+    current += selector;
+    chrome.storage.sync.set({ khExcludeSelectors: current });
+  });
+
+  // Feedback
+  createInspectorToast("Element Dissolved & Removed");
+}
+
+function createParticleExplosion(target) {
+  const rect = target.getBoundingClientRect();
+  if (rect.width === 0 || rect.height === 0) return; // Skip if invisible
+
+  // Extract colors from element
+  const computed = window.getComputedStyle(target);
+  const bgColor = computed.backgroundColor;
+  const textColor = computed.color;
+  const borderColor = computed.borderLeftColor;
+
+  // Create palette
+  const colors = [bgColor, textColor, borderColor, "#0d9488"].filter(
+    (c) => c && c !== "rgba(0, 0, 0, 0)" && c !== "transparent"
+  );
+  if (colors.length === 0) colors.push("#0d9488", "#ccfbf1");
+
+  // Create particles
+  const particleCount = 100;
+
+  for (let i = 0; i < particleCount; i++) {
+    const p = document.createElement("div");
+
+    // Initial Position (Random within element)
+    const initialX = rect.left + window.scrollX + Math.random() * rect.width;
+    const initialY = rect.top + window.scrollY + Math.random() * rect.height;
+
+    // Size (Random 3px to 7px)
+    const size = Math.random() * 4 + 3;
+
+    p.style.position = "absolute";
+    p.style.left = initialX + "px";
+    p.style.top = initialY + "px";
+    p.style.width = size + "px";
+    p.style.height = size + "px";
+    p.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    p.style.borderRadius = Math.random() > 0.5 ? "50%" : "2px"; // Mix of circles and squares
+    p.style.pointerEvents = "none";
+    p.style.zIndex = "999999";
+    p.style.opacity = "1";
+    // Slower, floaty transition
+    p.style.transition =
+      "transform 1.5s cubic-bezier(0.4, 0.0, 0.2, 1), opacity 1.5s ease-in";
+
+    document.body.appendChild(p);
+
+    // Trigger Animation (Next Frame)
+    requestAnimationFrame(() => {
+      // Physics: Explode outward + Drift Upward (Dust effect)
+      const angle = Math.random() * Math.PI * 2;
+      const velocity = Math.random() * 80 + 30; // Explosion force around 30-110px
+
+      const driftY = -1 * (Math.random() * 100 + 50); // Upward drift 50-150px
+
+      const destX = Math.cos(angle) * velocity;
+      const destY = Math.sin(angle) * velocity + driftY; // Combine explosion + gravity
+
+      // Random rotation
+      const rotate = (Math.random() - 0.5) * 720;
+
+      p.style.transform = `translate(${destX}px, ${destY}px) rotate(${rotate}deg) scale(0)`;
+      p.style.opacity = "0";
+    });
+
+    // Cleanup
+    setTimeout(() => {
+      if (p.parentNode) p.remove();
+    }, 1500);
+  }
+}
+
+function generateSelector(el) {
+  if (el.id) return `#${el.id}`;
+  if (el.className && typeof el.className === "string") {
+    const classes = el.className
+      .split(" ")
+      .filter((c) => c.trim())
+      .join(".");
+    if (classes) return `.${classes}`;
+  }
+  return el.tagName.toLowerCase();
+}
+
+let toastEl = null;
+function createInspectorToast(msg) {
+  removeInspectorToast();
+  toastEl = document.createElement("div");
+  toastEl.textContent = msg;
+  toastEl.style.cssText =
+    "position: fixed; bottom: 20px; right: 20px; background: rgba(0,0,0,0.8); color: white; padding: 10px 20px; border-radius: 8px; z-index: 999999; font-family: sans-serif; font-size: 14px;";
+  document.body.appendChild(toastEl);
+}
+function removeInspectorToast() {
+  if (toastEl) toastEl.remove();
+}
+
+chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
+  if (msg.type === "KH_TOGGLE_INSPECTOR") {
+    const isActive = toggleInspector();
+    sendResponse({ success: true, isActive });
+    return true;
+  }
   if (msg?.type === "KH_GET_PAGE_CONTENT") {
     (async () => {
       try {
+        const clone = document.body.cloneNode(true);
+
         // Heuristic function to extract article content
         function extractArticle() {
-          const clone = document.body.cloneNode(true);
-
           // 1. Initial aggressive removal by selector
           const toRemove = [
             "nav",

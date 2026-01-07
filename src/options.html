@@ -829,6 +829,20 @@
                   placeholder="gemini-1.5-flash / gpt-4o-mini"
                 />
               </div>
+
+              <div class="form-row" style="margin-top: 16px">
+                <label>Custom System Prompt (Optional)</label>
+                <textarea
+                  id="aiCustomPrompt"
+                  class="input-text"
+                  placeholder="e.g., You are a cynical pirate. Be extremely concise."
+                  style="min-height: 80px"
+                ></textarea>
+                <div class="hint">
+                  This instruction will be appended to all AI requests
+                  (Summarize, Explain, Chat).
+                </div>
+              </div>
             </div>
 
             <div class="form-group">
