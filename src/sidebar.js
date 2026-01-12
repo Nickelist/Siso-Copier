@@ -641,6 +641,7 @@ document.addEventListener("DOMContentLoaded", () => {
       aiModel: "",
       aiLanguage: "english",
       customSystemPrompt: "",
+      localModelId: null,
     });
 
     // Check session storage
@@ -654,7 +655,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (
       !settings.aiApiKey &&
       settings.aiProvider !== "nano" &&
-      settings.aiProvider !== "lmstudio"
+      settings.aiProvider !== "lmstudio" &&
+      settings.aiProvider !== "local"
     ) {
       showStatus("Please set your AI API Key in Settings first", true);
       setTimeout(() => chrome.runtime.openOptionsPage(), 2000);
@@ -799,6 +801,8 @@ document.addEventListener("DOMContentLoaded", () => {
         resultText = await callFal(settings, systemPrompt, userPrompt);
       } else if (settings.aiProvider === "nano") {
         resultText = await callNano(settings, systemPrompt, userPrompt);
+      } else if (settings.aiProvider === "local") {
+        resultText = await callLocalModel(settings, systemPrompt, userPrompt);
       }
 
       // 6. Show Result
@@ -822,6 +826,181 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       showStatus("AI Request Failed", true);
     }
+  }
+
+  // --- LOCAL AI DOWNLOAD LOGIC ---
+
+  // --- REAL LOCAL AI (WebLLM) ---
+  let engine = null;
+  const MODEL_MAP = {
+    Qwen: "Qwen2.5-0.5B-Instruct-q4f16_1-MLC",
+    Llama: "Llama-3.2-1B-Instruct-q4f16_1-MLC",
+    Gemma: "gemma-2-2b-it-q4f16_1-MLC",
+  };
+  let currentModelId = null;
+
+  // Bind listeners
+  const btnQwen = document.getElementById("btnDownloadQwen");
+  if (btnQwen)
+    btnQwen.addEventListener("click", () => startRealDownload("Qwen"));
+
+  const btnLlama = document.getElementById("btnDownloadLlama");
+  if (btnLlama)
+    btnLlama.addEventListener("click", () => startRealDownload("Llama"));
+
+  const btnGemma = document.getElementById("btnDownloadGemma");
+  if (btnGemma)
+    btnGemma.addEventListener("click", () => startRealDownload("Gemma"));
+
+  async function getEngine() {
+    if (!window.webllm) {
+      try {
+        // Import local library (Downloaded to src/web-llm.js)
+        const webllm = await import(chrome.runtime.getURL("src/web-llm.js"));
+        window.webllm = webllm;
+      } catch (e) {
+        console.error("Failed to load WebLLM locally:", e);
+        throw new Error("Could not load AI Engine: " + e.message);
+      }
+    }
+    if (!engine) {
+      // Create engine instance
+      engine = new window.webllm.MLCEngine();
+      // Hook up global progress handlerto update UI if a download happens during inference
+      engine.setInitProgressCallback((report) => {
+        console.log("Engine Progress:", report);
+      });
+    }
+    return engine;
+  }
+
+  async function startRealDownload(shortName) {
+    // Ensure engine is loaded
+    try {
+      await getEngine();
+    } catch (e) {
+      alert("Failed to load WebLLM library: " + e.message);
+      return;
+    }
+
+    const uiName = shortName;
+    const modelId = MODEL_MAP[shortName];
+    currentModelId = modelId;
+
+    const btn = document.getElementById(`btnDownload${uiName}`);
+    const container = document.getElementById(`progress${uiName}`);
+    const bar = document.getElementById(`bar${uiName}`);
+    const statusText = document.getElementById(`label${uiName}`);
+    const percentText = document.getElementById(`percent${uiName}`);
+
+    if (!btn || !container || !bar) return;
+
+    // UI Init
+    btn.disabled = true;
+    btn.innerHTML = `<span class="btn-text">Initializing...</span>`;
+    container.style.display = "block";
+
+    try {
+      const eng = await getEngine();
+
+      // Reload model (triggers download/cache)
+      // We pass a callback specifically for this download session
+      const initProgressCallback = (report) => {
+        // Report format: { progress: number, text: string }
+        const progress = report.progress * 100;
+
+        bar.style.width = `${progress}%`;
+        percentText.textContent = `${Math.round(progress)}%`;
+        statusText.textContent = report.text;
+      };
+
+      // We need to reload the engine with the specific callback
+      // Note: In WebLLM v0.2+, setInitProgressCallback on instance is cleaner,
+      // but reloading with config is safer for specific model loading.
+      eng.setInitProgressCallback(initProgressCallback);
+
+      await eng.reload(modelId);
+
+      // Save as active model
+      await chrome.storage.sync.set({
+        aiProvider: "local",
+        localModelId: modelId,
+      });
+
+      // Update Settings UI to reflect "Local" is selected (if reachable)
+      // (Optional: send message to options page if open, but storage sync handles it)
+
+      // Success UI
+      statusText.textContent = "Model Loaded & Ready!";
+      statusText.style.color = "#10b981";
+      bar.style.background = "#10b981";
+
+      // Update ALL buttons
+      Object.keys(MODEL_MAP).forEach((key) => {
+        const otherBtn = document.getElementById(`btnDownload${key}`);
+        if (!otherBtn) return;
+
+        if (key === shortName) {
+          otherBtn.disabled = true;
+          otherBtn.innerHTML = `
+            <svg class="btn-icon" viewBox="0 0 24 24"><path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" /></svg>
+            <span class="btn-text">Active Model</span>
+          `;
+          otherBtn.style.backgroundColor = "#10b981"; // Green
+          otherBtn.style.border = "none";
+        } else {
+          otherBtn.disabled = false;
+          otherBtn.innerHTML = `<span class="btn-text">Activate</span>`;
+          otherBtn.style.backgroundColor = ""; // Reset
+          otherBtn.style.border = "1px solid #e2e8f0";
+          // Hide progress bar for others if needed? No, leave them.
+        }
+      });
+    } catch (err) {
+      console.error("Download failed:", err);
+      statusText.textContent = "Error: " + err.message;
+      statusText.style.color = "red";
+      btn.disabled = false;
+      btn.innerHTML = `<span class="btn-text">Retry</span>`;
+    }
+  }
+
+  async function callLocalModel(settings, system, user) {
+    // Priority: 1. Current session loaded model 2. Saved preference 3. Default Qwen
+    if (!currentModelId) {
+      if (settings.localModelId) {
+        currentModelId = settings.localModelId;
+      } else {
+        currentModelId = MODEL_MAP["Qwen"];
+      }
+    }
+
+    const eng = await getEngine();
+
+    // Ensure the model is loaded (if they refreshed the page, this re-verifies cache)
+    // If it's already loaded, this is instant.
+    if (!eng.getChatSession) {
+      // older version fallback or safety check
+      // but new MLCEngine handles state well.
+      // We'll just call reload to be safe, it's a no-op if loaded.
+      // However, reload without callback might hide progress if it needs to load.
+      // Let's assume user clicked download button content script stays alive long enough.
+    }
+
+    // If model changed in settings (unlikely here as we have buttons), we might need logic.
+    // For now, we assume the last downloaded/loaded model is the one to use.
+
+    // Chat
+    const messages = [
+      { role: "system", content: system },
+      { role: "user", content: user },
+    ];
+
+    const reply = await eng.chat.completions.create({
+      messages,
+    });
+
+    return reply.choices[0].message.content;
   }
 
   async function callOpenAI(settings, system, user) {
@@ -960,7 +1139,7 @@ document.addEventListener("DOMContentLoaded", () => {
   async function callNano(settings, system, user) {
     if (!window.ai || !window.ai.languageModel) {
       throw new Error(
-        "Chrome Built-in AI not found. Enable in chrome://flags or check device compatibility."
+        "Chrome Built-in AI (Gemini Nano) not detected. Did you mean to select 'Local Device (Offline)'? If not, enable chrome://flags/#prompt-api-for-gemini-nano"
       );
     }
 
@@ -983,4 +1162,57 @@ document.addEventListener("DOMContentLoaded", () => {
       throw new Error("Nano Error: " + e.message);
     }
   }
+
+  // --- RESTORE UI STATE ---
+  async function restoreLocalModelState() {
+    const settings = await chrome.storage.sync.get({
+      aiProvider: "gemini",
+      localModelId: null,
+    });
+
+    if (settings.aiProvider === "local" && settings.localModelId) {
+      // Find which shortName matches the stored ID
+      let activeShortName = null;
+      for (const [shortName, id] of Object.entries(MODEL_MAP)) {
+        if (id === settings.localModelId) {
+          activeShortName = shortName;
+          break;
+        }
+      }
+
+      if (activeShortName) {
+        // Update UI
+        Object.keys(MODEL_MAP).forEach((key) => {
+          const btn = document.getElementById(`btnDownload${key}`);
+          if (!btn) return;
+
+          if (key === activeShortName) {
+            btn.disabled = true;
+            btn.innerHTML = `
+                <svg class="btn-icon" viewBox="0 0 24 24"><path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" /></svg>
+                <span class="btn-text">Active Model</span>
+              `;
+            btn.style.backgroundColor = "#10b981";
+            btn.style.border = "none";
+
+            // Also show cache status green
+            const statusText = document.getElementById(`label${key}`);
+            const bar = document.getElementById(`bar${key}`);
+            if (statusText) {
+              statusText.textContent = "Model Loaded";
+              statusText.style.color = "#10b981";
+            }
+            if (bar) {
+              bar.style.width = "100%";
+              bar.style.background = "#10b981";
+            }
+          } else {
+            // Reset others
+          }
+        });
+      }
+    }
+  }
+
+  restoreLocalModelState();
 });

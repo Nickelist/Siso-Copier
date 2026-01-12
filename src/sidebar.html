@@ -520,6 +520,7 @@
     <div class="tabs">
       <button class="tab-btn active" data-tab="home">Home</button>
       <button class="tab-btn" data-tab="ai">AI Explainer</button>
+      <button class="tab-btn" data-tab="local">Offline AI</button>
     </div>
 
     <div class="content">
@@ -792,8 +793,209 @@
         ></div>
       </div>
 
+      <!-- Offline AI Tab -->
+      <div id="tab-local" class="tab-content">
+        <div class="section-header" style="margin-top: 0">
+          Offline AI Models
+        </div>
+        <p
+          style="
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 16px;
+            line-height: 1.4;
+          "
+        >
+          Download the <b>Gemma 2B</b> model to run AI features privately on
+          your device. No internet required after download.
+        </p>
+
+        <div
+          class="model-list"
+          style="display: flex; flex-direction: column; gap: 12px"
+        >
+          <!-- Model 1: Qwen 2.5 (0.5B) -->
+          <div
+            style="
+              background: rgba(255, 255, 255, 0.5);
+              border: 1px solid rgba(0, 0, 0, 0.1);
+              border-radius: 12px;
+              padding: 16px;
+            "
+          >
+            <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px">
+              Qwen 2.5 (0.5B)
+            </div>
+            <div style="font-size: 12px; color: #888; margin-bottom: 12px">
+              Size: ~350 MB • Alibaba • The fastest option
+            </div>
+            <button
+              id="btnDownloadQwen"
+              class="btn"
+              style="background-color: #3b82f6"
+            >
+              <svg class="btn-icon" viewBox="0 0 24 24">
+                <path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" />
+              </svg>
+              <span class="btn-text">Download</span>
+            </button>
+            <div id="progressQwen" style="display: none; margin-top: 12px">
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  font-size: 11px;
+                  margin-bottom: 4px;
+                  color: #555;
+                "
+              >
+                <span id="labelQwen">Downloading...</span>
+                <span id="percentQwen">0%</span>
+              </div>
+              <div
+                style="
+                  height: 6px;
+                  background: rgba(0, 0, 0, 0.1);
+                  border-radius: 3px;
+                  overflow: hidden;
+                "
+              >
+                <div
+                  id="barQwen"
+                  style="
+                    height: 100%;
+                    width: 0%;
+                    background: #0d9488;
+                    transition: width 0.2s;
+                  "
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Model 2: Llama 3.2 (1B) -->
+          <div
+            style="
+              background: rgba(255, 255, 255, 0.5);
+              border: 1px solid rgba(0, 0, 0, 0.1);
+              border-radius: 12px;
+              padding: 16px;
+            "
+          >
+            <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px">
+              Llama 3.2 (1B)
+            </div>
+            <div style="font-size: 12px; color: #888; margin-bottom: 12px">
+              Size: ~800 MB • Meta • Balanced speed/smarts
+            </div>
+            <button
+              id="btnDownloadLlama"
+              class="btn"
+              style="background-color: #3b82f6"
+            >
+              <svg class="btn-icon" viewBox="0 0 24 24">
+                <path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" />
+              </svg>
+              <span class="btn-text">Download</span>
+            </button>
+            <div id="progressLlama" style="display: none; margin-top: 12px">
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  font-size: 11px;
+                  margin-bottom: 4px;
+                  color: #555;
+                "
+              >
+                <span id="labelLlama">Downloading...</span>
+                <span id="percentLlama">0%</span>
+              </div>
+              <div
+                style="
+                  height: 6px;
+                  background: rgba(0, 0, 0, 0.1);
+                  border-radius: 3px;
+                  overflow: hidden;
+                "
+              >
+                <div
+                  id="barLlama"
+                  style="
+                    height: 100%;
+                    width: 0%;
+                    background: #0d9488;
+                    transition: width 0.2s;
+                  "
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Model 3: Gemma 3 (4B) -->
+          <div
+            style="
+              background: rgba(255, 255, 255, 0.5);
+              border: 1px solid rgba(0, 0, 0, 0.1);
+              border-radius: 12px;
+              padding: 16px;
+            "
+          >
+            <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px">
+              Gemma 2 (2B)
+            </div>
+            <div style="font-size: 12px; color: #888; margin-bottom: 12px">
+              Size: ~1.4 GB • Google • High intelligence
+            </div>
+            <button
+              id="btnDownloadGemma"
+              class="btn"
+              style="background-color: #3b82f6"
+            >
+              <svg class="btn-icon" viewBox="0 0 24 24">
+                <path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" />
+              </svg>
+              <span class="btn-text">Download</span>
+            </button>
+            <div id="progressGemma" style="display: none; margin-top: 12px">
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  font-size: 11px;
+                  margin-bottom: 4px;
+                  color: #555;
+                "
+              >
+                <span id="labelGemma">Downloading...</span>
+                <span id="percentGemma">0%</span>
+              </div>
+              <div
+                style="
+                  height: 6px;
+                  background: rgba(0, 0, 0, 0.1);
+                  border-radius: 3px;
+                  overflow: hidden;
+                "
+              >
+                <div
+                  id="barGemma"
+                  style="
+                    height: 100%;
+                    width: 0%;
+                    background: #0d9488;
+                    transition: width 0.2s;
+                  "
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div id="status" class="status"></div>
     </div>
+
     <script src="sidebar.js"></script>
   </body>
 </html>

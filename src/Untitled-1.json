@@ -1,0 +1,1038 @@
+{
+    "technical_specifications": {
+        "aspect_ratio": "9:16",
+        "dimensions": "1440x2560 pixels",
+        "file_format": "jpg, jpeg, png",
+        "resolution": "72 dpi",
+        "max_file_size": "550 kb",
+        "color_space": "sRGB"
+    },
+    "desired_image_attributes": {
+        "general_principles": [
+            "Images should have a premium, high-quality appearance",
+            "Content must be appropriate for all audiences",
+            "Ensure elements placed on the image remain visible against the background",
+            "Composition should focus on a clear main subject",
+            "Colors should be harmonious and visually appealing"
+        ],
+        "positive_keywords": [
+            "8kResolution",
+            "photorealistic",
+            "highlyDetailed",
+            "depthOfField",
+            "volumetricLighting",
+            "softboxLighting",
+            "sharpFocus",
+            "octaneRender",
+            "cleanComposition",
+            "balancedExposure",
+            "naturalColors",
+            "textureRich",
+            "perfectlyLit",
+            "highDynamicRange",
+            "globalIllumination",
+            "9:16AspectRatio"
+        ],
+        "composition_guidelines": [
+            "Maintain clear focal point",
+            "Ensure proper balance and visual weight",
+            "Avoid overcrowded compositions",
+            "Keep horizon lines straight",
+            "Consider placement of elements on the image when composing",
+            "Centered Composition: Places the main subject in the middle of the frame for balance and focus. Best practices: Ensure adequate space around the subject; Avoid cluttering the composition; Maintain symmetry where appropriate",
+            "Horizontal Line Composition: Uses parallel horizontal lines to create structure, stability, and sense of calm. Best practices: Keep horizon lines straight and properly positioned; Balance elements above and below the line; Use rule of thirds for horizon placement when appropriate",
+            "Vertical Line Composition: Uses vertical lines to create sense of height, power, and upward movement. Best practices: Ensure vertical lines are truly vertical without distortion; Use to guide eye upward through the composition; Balance with subtle horizontal elements when needed",
+            "Symmetrical Composition: Arranges visual elements in mirrored way for formal harmony and stability. Best practices: Ensure precise alignment of elements on both sides; Maintain perfect balance across central axis; Use for formal, structured visual presentations",
+            "Diagonal Composition: Arranges elements along diagonal line for energy, movement, and visual interest. Best practices: Use strong diagonal lines guiding eye through frame from corner to corner; Create clear directional flow along the diagonal; Balance with subtle opposing elements when needed",
+            "Leading Line Composition: Uses visual lines to guide viewer's eye through scene in intentional journey. Best practices: Use natural lines (roads, paths, building edges) to guide eye to key focal points; Create clear visual path through the image; Ensure lines lead to important elements rather than off-frame",
+            "Atmospheric Depth: Uses elements like soft clouds, gradients, or atmospheric haze in open spaces (skies, walls) to prevent flat, dead space while maintaining a clean aesthetic."
+        ],
+        "color_scheme_guidelines": [
+            "Ensure sufficient contrast for elements placed on the image",
+            "Avoid eye-straining color combinations",
+            "Create harmonious color relationships",
+            "Consider visibility of text elements on the image",
+            "Prefer natural, balanced color palettes",
+            "Monochromatic Color Scheme: Uses variations of single color to create cohesive, sophisticated look with depth. Best practices: Use sufficient variation in lightness/darkness for visual interest; Maintain color unity while providing enough contrast; Consider using subtle neutral accents when needed",
+            "Analogous Color Scheme: Uses colors adjacent on color wheel for harmonious variation with clear relationship. Best practices: Select colors that are neighbors on the color wheel; Use one color as dominant with others as support; Limit selection to 2-3 adjacent colors for cohesiveness",
+            "Complementary Color Scheme: Uses colors opposite on color wheel to create vibrant contrast and visual energy. Best practices: Balance complementary colors carefully to avoid visual conflict; Use one as dominant and one as accent for best results; Consider using tints and shades of the complementary colors",
+            "Black and White Scheme: Uses only black, white, and grays to create timeless, classic imagery focusing on form. Best practices: Ensure sufficient contrast for visual interest; Focus on shapes, textures, and lighting; Create rich tonal range from pure black to pure white",
+            "Natural Color Scheme: Uses colors found in nature with balanced saturation and harmonious relationships. Best practices: Base palette on colors commonly found together in nature; Maintain natural color relationships and saturation levels; Create balance between warm and cool tones when appropriate"
+        ]
+    },
+    "avoid_image_attributes": {
+        "general_principles": [
+            "Visual styles and technical issues that appear unprofessional"
+        ],
+        "negative_keywords": [
+            "lowQuality",
+            "jpegArtifacts",
+            "watermark",
+            "text",
+            "signature",
+            "logo",
+            "cropped",
+            "outOfFrame",
+            "cutOff",
+            "distorted",
+            "blurry",
+            "grainy",
+            "pixelated",
+            "cartoon",
+            "anime",
+            "illustration",
+            "flatLighting",
+            "overexposed",
+            "underexposed",
+            "badGeometry",
+            "fusedFingers"
+        ],
+        "composition_errors": [
+            "Poor Subject Emphasis: Main subject is insufficiently emphasized or disrupted by misaligned elements. Avoid: Avoid disruptive elements interfering with main subject; Don't create compositions with misaligned key elements; Avoid cluttered arrangements obscuring intended focal point",
+            "Incorrect Horizon Alignment: Horizon line is incorrectly placed or not level, creating disorienting effect. Avoid: Avoid tilted or slanted horizon lines; Don't position horizon line in unnatural or unbalanced position; Avoid compositions where landscape appears to be sliding off frame",
+            "Unbalanced Visual Arrangement: Asymmetrical composition creates unintentionally unbalanced visual arrangement. Avoid: Avoid unintentionally lopsided compositions that feel unstable; Don't cluster all important elements on one side without balance; Avoid awkward negative space creating unintended visual tension"
+        ],
+        "color_errors": [
+            "Excessive Neon Color Usage: Extremely bright, artificially saturated colors causing eye strain and UI conflicts. Avoid: Avoid neon colors that strain the eyes or create visual vibration; Don't use artificially bright, oversaturated color palettes; Avoid harsh fluorescent color schemes that appear low-quality; Steer clear of acidic, eye-straining color combinations",
+            "Low Element Contrast: Background colors that make elements (e.g., text) difficult to read. Avoid: Avoid white or very light backgrounds where text would be illegible; Don't use colors that match text element colors creating poor contrast; Avoid busy patterns in areas where text elements appear",
+            "Color Oversaturation: Excessively saturated colors that appear artificial and visually jarring. Avoid: Avoid oversaturated colors that appear artificial or enhanced; Don't push color vibrance beyond natural-looking levels; Avoid HDR-like extreme color processing"
+        ],
+        "technical_quality_issues": [
+            "lowResolution",
+            "visibleCompression",
+            "pixelation",
+            "noisyImages",
+            "improperlyExposed",
+            "badlyFocused",
+            "improperlyCropped"
+        ],
+        "visual_style_issues": [
+            "oversaturated",
+            "undersaturated",
+            "heavilyFilteredEffects",
+            "unrealisticHDREffects",
+            "overdoneVignetting",
+            "heavilyArtificialLooks"
+        ]
+    },
+    "prohibited_content": {
+        "religious": [
+            "Content with religious associations or symbolism. Avoid: Avoid any religious symbols, iconography, or references; Don't include any places of worship or religious architecture; Avoid depictions of religious figures, saints, or spiritual leaders; No religious attire, symbols, or practices; Avoid yoga poses that have religious associations"
+        ],
+        "political": [
+            "Content with political associations, figures, or symbols. Avoid: Avoid any political figures, politicians, or political themes; Don't include national flags, political symbols, or emblems; Avoid maps, country borders, or geographical divisions; No protest scenes, rallies, or political gatherings; Avoid currency, national symbols, or patriotic imagery"
+        ],
+        "violence": [
+            "Content depicting violence, weapons, or threatening imagery. Avoid: Avoid any weapons, guns, knives, or combat equipment; Don't include violence, aggression, or threatening scenarios; Avoid blood, injury, or physical harm; No skulls, horror elements, or frightening imagery; Avoid war scenes, destruction, or disaster imagery"
+        ],
+        "health": [
+            "Medical equipment, facilities, and health-related sensitive content. Avoid: Avoid any medical equipment, supplies, or instruments; Don't include hospitals, clinics, or medical facilities; Avoid face masks, PPE, or medical protective gear; No pills, medicines, injections, or medical treatments; Avoid imagery related to illness or healthcare settings"
+        ],
+        "inappropriate": [
+            "Revealing, suggestive, or otherwise inappropriate content. Avoid: Avoid revealing clothing or exposed skin; Don't include suggestive poses, expressions, or scenarios; Avoid intimate physical contact between individuals; No minimal clothing, shirtless individuals, or beachwear; Avoid content that could be interpreted as romantic or sensual"
+        ],
+        "low_quality_styles": [
+            "Visual styles and technical issues that appear unprofessional. Avoid: Avoid neon colors, harsh saturation, or eye-straining palettes; Don't use artificially bright, oversaturated color palettes; Avoid harsh fluorescent color schemes that appear low-quality; No flat vector style, cartoon illustrations, or non-photographic rendering; Avoid blurry, poorly lit, or technically flawed imagery"
+        ]
+    },
+    "regional_guidelines": {
+        "global": {
+            "desired_image_attributes": [
+                "**Universal Appeal:** Imagery should be culturally neutral, cosmopolitan, and relatable to a worldwide audience.",
+                "**Diversity:** When people are present, showcase a diverse mix of ethnicities and appearances to reflect a global context.",
+                "**Aesthetic:** Modern, clean, and aspirational. Use 'International Style' architecture, fashion, and settings that do not feel tied to one specific location.",
+                "**Modesty:** Clothing should be smart-casual or professional, covering shoulders and knees to ensuring acceptability across conservative and liberal cultures."
+            ],
+            "avoid_image_attributes": [
+                "**Specific Cultural Markers:** Avoid text, calendars, license plates, or street signs in specific languages that ground the image in a specific country.",
+                "**Stereotypes:** Avoid relying on cultural, racial, or gender stereotypes.",
+                "**Polarizing Themes:** Avoid content that implies specific political or religious affiliations.",
+                "**Seasonality:** Avoid specific seasonal markers (e.g., snow, autumn leaves) unless relevant to the topic, to maintain global relevance."
+            ],
+            "prohibited_content": [
+                "**Alcohol:** Alcoholic beverages, wine glasses, bars, or cocktail imagery (to ensure safety for Middle Eastern/Asian markets).",
+                "**Religion & Politics:** Religious symbols, houses of worship, political flags, or figures.",
+                "**Revealing Clothing:** Sleeveless tops, deep necklines, miniskirts, or swimwear (unless in a specific swimming context).",
+                "**Violence & Weapons:** Firearms, knives, or aggressive conflict.",
+                "**Controversial Food:** Pork products or raw meat (to ensure broad dietary acceptability)."
+            ]
+        },
+        "india": {
+            "desired_image_attributes": [
+                "Modest clothing and styling suitable for a professional or family context.",
+                "**Human Models: Use a cosmopolitan mix of appearances. While South Asian features should be prominent, include ethnically ambiguous or international looks to reflect a modern, globalized Indian audience.**",
+                "**Styling: Blend modern global aesthetics with Indian sensibilities. 'Indo-Western' fusion, smart casuals, and professional Western attire are highly encouraged.**",
+                "Atmosphere: Aspirational, bright, and premium. Scenes should feel like modern urban India or high-end global locations."
+            ],
+            "avoid_image_attributes": [
+                "Emphasized spicy or extremely hot food",
+                "Content favoring any specific religion",
+                "Potentially divisive state-specific content",
+                "Content related to sensitive neighboring nations",
+                "**Stereotypical Portrayals: Avoid outdated tropes (e.g., snake charmers, purely rural poverty settings, over-reliance on traditional wedding attire for casual settings).**",
+                "**Avoid styling that feels like a 'tourist's view' of India.**",
+                "Avoid overly expressive or potentially misinterpreted hand gestures and poses."
+            ],
+            "prohibited_content": [
+                "Non-vegetarian food (meat, fish, eggs, cooked poultry)",
+                "Alcoholic beverages or items resembling alcohol (wine glasses, cocktail shakers)",
+                "Religious festivals with overt religious symbols",
+                "Content related to territorial disputes",
+                "References to specific countries: Pakistan, Afghanistan, China, Israel, Russia, Ukraine, Iran, Palestine",
+                "Sleeveless attire, tank tops, or deep necklines",
+                "Exposed shoulders, midriffs, or knees (shorts/miniskirts)"
+            ]
+        },
+        "unitedstates": {
+            "desired_image_attributes": [
+                "Neutral political representations",
+                "Balanced representation of political figures (if included)",
+                "Appropriate representation of diverse populations"
+            ],
+            "avoid_image_attributes": [
+                "Partisan content",
+                "Gun culture references",
+                "Stereotypical portrayals of demographic groups",
+                "Content insensitive to US regional differences"
+            ],
+            "prohibited_content": [
+                "Realistic firearms (even in sporting contexts)",
+                "Hunting imagery"
+            ]
+        },
+        "indonesia": {
+            "desired_image_attributes": [
+                "Conservative dress",
+                "Full coverage clothing for all genders",
+                "Respectful representation of traditional attire"
+            ],
+            "avoid_image_attributes": [
+                "Content insensitive to Islamic religious references",
+                "Content disrespectful to any religion",
+                "Western casual attire considered inappropriate",
+                "Content insensitive to specific Indonesian regions",
+                "Content favoring one ethnic group over others"
+            ],
+            "prohibited_content": [
+                "Religious practices or symbols"
+            ]
+        },
+        "japan": {
+            "desired_image_attributes": [
+                "Clean, minimalist design elements and harmonious compositions.",
+                "Balanced traditional and modern design aesthetics.",
+                "**When featuring human models, they should have appearances and features ethnically representative of Japan and East Asia.**",
+                "**For human subjects, models should have a calm, polite, and approachable demeanor with natural, respectful poses.**"
+            ],
+            "avoid_image_attributes": [
+                "Misrepresentation of cultural symbols or outdated technology.",
+                "**For human subjects, avoid overly 'kawaii' (cutesy) or juvenile styling, aiming for a more sophisticated and modern aesthetic unless the topic is specifically youth culture.**",
+                "**Letterboxing, white borders, or empty space at the top and bottom of the frame.**"
+            ],
+            "prohibited_content": [
+                "**Visible tattoos on human subjects, especially large or intricate ones.**"
+            ]
+        },
+        "thailand": {
+            "desired_image_attributes": [
+                "Modest, respectful clothing",
+                "Conservative dress standards",
+                "Culturally neutral representations",
+                "Balanced traditional and modern imagery",
+                "Appropriate representation of diverse Thai culture"
+            ],
+            "avoid_image_attributes": [
+                "Content that could be perceived as disrespectful to Thai institutions",
+                "Revealing or Western-style casual wear",
+                "Political content or imagery",
+                "Content insensitive to Thai cultural values",
+                "Stereotypical portrayals of Thai culture",
+                "References to sensitive historical or political topics"
+            ],
+            "prohibited_content": [
+                "Any imagery related to monarchy or royal family",
+                "Political figures or political symbols",
+                "Religious practices or symbols",
+                "Alcoholic beverages in prominent display",
+                "Sleeveless or revealing attire",
+                "Content related to territorial disputes with neighboring countries"
+            ]
+        },
+        "vietnam": {
+            "desired_image_attributes": [
+                "Modest, conservative clothing",
+                "Full coverage attire for all genders",
+                "Modern, forward-looking imagery",
+                "Culturally appropriate representations",
+                "Balanced urban and rural imagery"
+            ],
+            "avoid_image_attributes": [
+                "Political content or symbolism",
+                "War-related imagery or historical conflict references",
+                "Western-style revealing clothing",
+                "Content insensitive to Vietnamese cultural values",
+                "References to sensitive political or historical topics",
+                "Stereotypical or outdated portrayals"
+            ],
+            "prohibited_content": [
+                "Political figures, symbols, or party-related content",
+                "Military or war imagery",
+                "Religious practices or symbols",
+                "Content related to historical conflicts",
+                "References to specific countries with sensitive diplomatic relations",
+                "Sleeveless attire or exposed shoulders",
+                "Short skirts or shorts above the knee"
+            ]
+        },
+        "malaysia": {
+            "desired_image_attributes": [
+                "Conservative, modest clothing",
+                "Full coverage attire respecting Islamic dress standards",
+                "Halal food presentations",
+                "Multi-ethnic and culturally inclusive imagery",
+                "Respectful representation of diverse Malaysian population"
+            ],
+            "avoid_image_attributes": [
+                "Content favoring one ethnic or religious group over others",
+                "Western-style casual or revealing attire",
+                "Content insensitive to Islamic values",
+                "Non-halal food items",
+                "Political or racially divisive content",
+                "Content insensitive to Malaysian cultural sensitivities",
+                "Alcoholic beverages in prominent display"
+            ],
+            "prohibited_content": [
+                "Non-halal food (pork, non-halal meat)",
+                "Alcoholic beverages",
+                "Religious practices or symbols",
+                "Political figures or political symbols",
+                "Content related to ethnic or religious tensions",
+                "Sleeveless attire or clothing showing excessive skin",
+                "Exposed shoulders, midriffs, or knees",
+                "References to sensitive political or territorial disputes"
+            ]
+        }
+    },
+    "oem_guidelines": {
+        "oppo": {
+            "subject_requirements": {
+                "humans_required": false
+            },
+            "prohibited_content": [
+                "Images of affordable everyday vehicles (e.g., common cars, motorcycles)",
+                "Night travel scenes",
+                "Religious architecture",
+                "Infants and teenagers in school dress",
+                "Disorganized food presentations",
+                "Visible tattoos",
+                "Electronic devices in direct focus",
+                "Flat makeup styles",
+                "Animals with open mouths or aggressive expressions",
+                "Images of clocks or timepieces",
+                "Jewelry, antiques, or cultural artifacts as primary subjects",
+                "Plain images lacking aesthetic appeal",
+                "Technical focus imagery",
+                "Cropped subjects",
+                "Purely black and white images are prohibited; they must include a slight color element or tint.",
+                "People showcasing or modeling jewelry"
+            ],
+            "avoid_image_attributes": [
+                "Avoid busy patterns in the top-left area.",
+                "Avoid light backgrounds that could clash with white overlaid text."
+            ],
+            "layout_specifications": [
+                "Design with a prominent top-left area for information overlay.",
+                "Create compositions with visual breathing room in the top-left quadrant.",
+                "Ensure good contrast for white overlaid text and notification areas.",
+                "Maintain adequate spacing around areas where information overlays.",
+                "Ensure sufficient contrast between image background and overlaid information.",
+                "Avoid placing important elements in areas reserved for overlaid information.",
+                "Keep the top portion of the image relatively clear for notifications.",
+                "Avoid complex patterns in notification areas.",
+                "Ensure adequate contrast for notification text against the image.",
+                "Safe zones for important content: avoid placing critical elements in the top 25%, bottom 15%, left 5%, and right 5% of the image."
+            ]
+        },
+        "vivo": {
+            "subject_requirements": {
+                "humans_required": false
+            },
+            "background_requirements": {
+                "texture_required": true
+            },
+            "prohibited_content": [
+                "Images of affordable everyday vehicles (e.g., common cars, motorcycles)",
+                "Night travel scenes",
+                "Religious architecture",
+                "Infants and teenagers in school dress",
+                "Disorganized food presentations",
+                "Visible tattoos",
+                "Electronic devices in direct focus",
+                "Flat makeup styles",
+                "Animals with open mouths or aggressive expressions",
+                "Images of clocks or timepieces",
+                "Jewelry, antiques, or cultural artifacts as primary subjects",
+                "Plain images lacking aesthetic appeal",
+                "Technical focus imagery",
+                "Cropped subjects",
+                "Purely black and white images are prohibited; they must include a slight color element or tint.",
+                "People showcasing or modeling jewelry"
+            ],
+            "avoid_image_attributes": [
+                "Avoid busy patterns in the top-center area.",
+                "Avoid light backgrounds that could clash with white overlaid text."
+            ],
+            "layout_specifications": [
+                "Design with a prominent top-center area for information overlay.",
+                "Create visual compositions that enhance a clean aesthetic.",
+                "Ensure the top-center area has sufficient contrast for white overlaid text.",
+                "Maintain adequate spacing around areas where information overlays.",
+                "Ensure sufficient contrast between image background and overlaid information.",
+                "Avoid placing important elements in areas reserved for overlaid information.",
+                "Keep the top portion of the image relatively clear for notifications.",
+                "Avoid complex patterns in notification areas.",
+                "Ensure adequate contrast for notification text against the image.",
+                "Keep the top and bottom quarters of the image relatively clear of complex details to ensure UI legibility.",
+                "Compositional Rule: The subject must be framed with ample negative space on both the left and right sides, ensuring it does not touch the vertical edges."
+            ]
+        },
+        "transsion": {
+            "subject_requirements": {
+                "humans_required": false
+            },
+            "background_requirements": {
+                "texture_required": true
+            },
+            "prohibited_content": [
+                "Images of affordable everyday vehicles (e.g., common cars, motorcycles)",
+                "Night travel scenes",
+                "Religious architecture",
+                "Infants and teenagers in school dress",
+                "Disorganized food presentations",
+                "Visible tattoos",
+                "Electronic devices in direct focus",
+                "Flat makeup styles",
+                "Animals with open mouths or aggressive expressions",
+                "Images of clocks or timepieces",
+                "Jewelry, antiques, or cultural artifacts as primary subjects",
+                "Plain images lacking aesthetic appeal",
+                "Technical focus imagery",
+                "Cropped subjects",
+                "Purely black and white images are prohibited; they must include a slight color element or tint.",
+                "People showcasing fashion items or clothing"
+            ],
+            "avoid_image_attributes": [
+                "Avoid busy patterns in the top-center area.",
+                "Avoid light backgrounds that could clash with white overlaid text."
+            ],
+            "layout_specifications": [
+                "Design with a prominent top-center area for information overlay.",
+                "Create visual hierarchy that respects the overall layout.",
+                "Ensure sufficient contrast for white overlaid elements.",
+                "Maintain adequate spacing around areas where information overlays.",
+                "Ensure sufficient contrast between image background and overlaid information.",
+                "Avoid placing important elements in areas reserved for overlaid information.",
+                "Keep the top portion of the image relatively clear for notifications.",
+                "Avoid complex patterns in notification areas.",
+                "Ensure adequate contrast for notification text against the image.",
+                "Keep the top and bottom quarters of the image relatively clear of complex details to ensure UI legibility.",
+                "Compositional Rule: The subject must be framed with ample negative space on both the left and right sides, ensuring it does not touch the vertical edges."
+            ]
+        },
+        "samsung": {
+            "subject_requirements": {
+                "humans_required": false
+            },
+            "desired_image_attributes": [
+                "Enhanced premium quality standards.",
+                "Higher contrast for visibility.",
+                "Clean, minimal designs."
+            ],
+            "avoid_image_attributes": [
+                "Avoid busy patterns in the top-center area.",
+                "Avoid light backgrounds that could clash with white overlaid text."
+            ],
+            "layout_specifications": [
+                "Design with a prominent top-center area for information overlay.",
+                "Ensure clear contrast in the top-center area for white overlaid text.",
+                "Composition should accommodate a notification layout below the top-center area.",
+                "Maintain adequate spacing around areas where information overlays.",
+                "Ensure sufficient contrast between image background and overlaid information.",
+                "Avoid placing important elements in areas reserved for overlaid information.",
+                "Keep the top portion of the image relatively clear for notifications.",
+                "Avoid complex patterns in notification areas.",
+                "Ensure adequate contrast for notification text against the image.",
+                "Safe zones for important content: avoid placing critical elements in the top 25%, bottom 15%, left 5%, and right 5% of the image."
+            ]
+        },
+        "xiaomi": {
+            "subject_requirements": {
+                "humans_required": false
+            },
+            "desired_image_attributes": [
+                "Balance content with potential information density.",
+                "Prefer left-side composition.",
+                "Accommodate various visual themes."
+            ],
+            "avoid_image_attributes": [
+                "Avoid busy patterns in the top-left area.",
+                "Avoid light backgrounds that could clash with white overlaid text."
+            ],
+            "layout_specifications": [
+                "Design with a prominent top-left area for information overlay.",
+                "Composition should balance with left-aligned elements.",
+                "Ensure the top-left area has sufficient contrast for white overlaid text.",
+                "Maintain adequate spacing around areas where information overlays.",
+                "Ensure sufficient contrast between image background and overlaid information.",
+                "Avoid placing important elements in areas reserved for overlaid information.",
+                "Keep the top portion of the image relatively clear for notifications.",
+                "Avoid complex patterns in notification areas.",
+                "Ensure adequate contrast for notification text against the image.",
+                "Safe zones for important content: avoid placing critical elements in the top 25%, bottom 15%, left 20%, and right 5% of the image."
+            ]
+        },
+        "realme": {
+            "subject_requirements": {
+                "humans_required": false
+            },
+            "desired_image_attributes": [
+                "Slightly more vibrant color palette acceptable.",
+                "Appeal to younger demographics without sacrificing quality.",
+                "Modern, contemporary visual styles."
+            ],
+            "avoid_image_attributes": [
+                "Avoid busy patterns in the top-center area.",
+                "Avoid light backgrounds that could clash with white overlaid text."
+            ],
+            "layout_specifications": [
+                "Design with a prominent top-center area for information overlay.",
+                "Create visual space that complements a clean aesthetic.",
+                "Ensure sufficient contrast in the top third for white overlaid text.",
+                "Maintain adequate spacing around areas where information overlays.",
+                "Ensure sufficient contrast between image background and overlaid information.",
+                "Avoid placing important elements in areas reserved for overlaid information.",
+                "Keep the top portion of the image relatively clear for notifications.",
+                "Avoid complex patterns in notification areas.",
+                "Ensure adequate contrast for notification text against the image.",
+                "Safe zones for important content: avoid placing critical elements in the top 25%, bottom 15%, left 5%, and right 5% of the image."
+            ]
+        }
+    },
+    "category_guidelines": {
+        "arts_culture": {
+            "allowed_content": [
+                "Destination Types: Famous museums, galleries, theaters, concert halls, opera houses, non-religious cultural landmarks, and iconic architectural sites.",
+                "Presentation: High-quality, professional photography aesthetic, well-composed with proper architectural alignment, vibrant yet natural colors, and good lighting.",
+                "Composition: Clear main subject without obstructions, balanced framing, straight vertical and horizontal lines, and an uncluttered, serene feel."
+            ],
+            "prohibited_content": [
+                "Destination Types: Religious buildings (temples, churches, etc.), controversial or political art installations, celebrity homes, or backstage/private areas.",
+                "Scenarios: Crowded festivals or concerts, paparazzi-style imagery, nightlife scenes, or events with alcohol consumption.",
+                "Visual Elements: Recognizable copyrighted artwork within the scene, unflattering angles, poor lighting, distracting foreground elements, or heavily filtered/edited images."
+            ],
+            "generation_directives": [
+                "Generate a premium, sophisticated, and serene image of the specified cultural landmark, museum, or venue.",
+                "Position the main subject to occupy the lower three-quarters of the frame, leaving the top quarter of the image open and uncluttered.",
+                "The composition must be clean, with a clear and unobstructed view of the primary subject.",
+                "Ensure all architectural lines are straight and not distorted.",
+                "The scene must be free of crowds, tourists, or other distracting people.",
+                "Use professional, gallery-style diffused lighting or beautiful, balanced natural light.",
+                "Avoid showing any specific, recognizable, or copyrighted pieces of art inside museums or galleries.",
+                "Do not include religious symbols, political themes, or controversial content.",
+                "Ensure the location appears clean, well-maintained, and aspirational."
+            ]
+        },
+        "automotive": {
+            "allowed_content": [
+                "Presentation: Premium, sleek, and aspirational with professional, dynamic lighting that highlights vehicle design and form.",
+                "Subjects: Generic and unbranded modern vehicles, including sedans, SUVs, electric cars (EVs), and futuristic concept designs.",
+                "Settings: Scenic open roads, modern architectural environments, minimalist studio settings, clean cityscapes, and futuristic landscapes.",
+                "Concepts: Abstract representations of innovation, performance, sustainability, and advanced automotive design."
+            ],
+            "prohibited_content": [
+                "Branding: Recognizable brand logos, badges, emblems, or specific, trademarked vehicle models and design elements (e.g., unique grilles or headlight shapes).",
+                "Scenarios: Accidents, vehicle damage, unsafe or reckless driving, street racing, traffic jams, cluttered repair shops, or used car lots.",
+                "Visuals: Visible license plates, dirt, dents, scratches, political or offensive bumper stickers, or low-quality/amateurish vehicle modifications.",
+                "People: Visible drivers or passengers, to maintain focus strictly on the vehicle's design and concept."
+            ],
+            "generation_directives": {
+                "Creative & Thematic Goals": [
+                    "Generate a premium, high-end image of a **sleek, unbranded concept vehicle** that is **flawlessly clean and dynamically lit**, using professional studio or dramatic natural light to **accentuate its design lines and curves**.",
+                    "The **vehicle** must be the clear hero, looking aspirational, modern, and innovative.",
+                    "The scene should be elegant and uncluttered, using a compelling background to enhance the vehicle's aesthetic without causing distractions."
+                ],
+                "Compositional & UI Guidelines": [
+                    "Compositional Rule: The main subject **(the vehicle)** must be positioned to occupy the lower three-quarters of the frame, leaving the top quarter of the image open and uncluttered.",
+                    "Compositional Rule: The primary subject must be perfectly centered or balanced within the composition, **presented in its entirety and fully visible without being cropped on any side**.",
+                    "Compositional Rule: The entire subject must be fully visible, with a clear margin of space between its lowest point and the bottom edge of the frame.",
+                    "The final output must be a full-bleed 9:16 portrait. The image content must extend to all four edges of the frame with no borders, bars, or letterboxing."
+                ],
+                "background_themes": {
+                    "scenic_natural_drives": [
+                        "on a winding coastal highway at golden hour, with dramatic cliffs and the ocean softly blurred in the background",
+                        "on a clean, open mountain pass road with sharp, majestic peaks under a clear sky",
+                        "cruising on a serene, empty road through a futuristic, lush green landscape representing sustainable mobility"
+                    ],
+                    "modern_urban_architecture": [
+                        "parked in front of a striking, minimalist modern building with clean lines and expansive glass facades",
+                        "on a sleek, rain-slicked city street at night, capturing beautiful bokeh and reflections from urban lights",
+                        "on a futuristic, sweeping architectural bridge at dusk with a softly out-of-focus city skyline"
+                    ],
+                    "studio_showroom_minimalist": [
+                        "in a bright, minimalist studio with a seamless infinity background, using dramatic lighting to sculpt the vehicle's form",
+                        "on a polished, highly reflective floor in a high-tech, futuristic showroom environment",
+                        "an abstract, artistic close-up on a key design feature, like a headlight or body panel, against a clean, dark backdrop"
+                    ]
+                },
+                "Content & Safety Restrictions": [
+                    "Avoid all brand logos, emblems, badges, and distinctive manufacturer design cues.",
+                    "Do not show license plates, dealership names, or any other identifying marks.",
+                    "Avoid all depictions of accidents, vehicle damage, or unsafe/reckless driving scenarios.",
+                    "Ensure the vehicle is a generic or concept model, not a recognizable real-world car.",
+                    "The vehicle must always appear new, perfectly clean, and pristine."
+                ]
+            }
+        },
+        "business_economy": {
+            "allowed_content": [
+                "Presentation: Professional, modern, and clean aesthetic that conveys success, innovation, and trustworthiness.",
+                "Subjects: Abstract data visualizations (upward-trending charts/graphs), generic office technology (unbranded laptops), architectural elements of modern financial districts.",
+                "Settings: Bright and airy modern offices, minimalist boardrooms, sleek co-working spaces, abstract digital environments.",
+                "Concepts: Abstract representations of growth, global commerce, financial security, strategic planning, and teamwork."
+            ],
+            "prohibited_content": [
+                "Branding: Specific company logos, recognizable software interfaces, branded products, or identifiable corporate headquarters and executives.",
+                "Scenarios: Financial distress, stock market crashes, unemployment, workplace conflict, protests, debt, or any negative economic activity.",
+                "Visuals: Visible text or data on documents/screens, specific currency notes, political symbols, cluttered desks, or outdated office environments.",
+                "People: Stereotypical, non-diverse, or stressed-out representations of professionals."
+            ],
+            "generation_directives": {
+                "Creative & Thematic Goals": [
+                    "Generate a premium, sophisticated image of an **abstract business or economic concept** that is **bright, clean, and modernly styled**, using professional lighting to create a sense of optimism, growth, and clarity.",
+                    "The **subject** must be a clear hero, embodying positive themes like innovation, strategy, or financial success.",
+                    "The scene should be minimalist and highly organized, using clean lines, negative space, and abstract forms to convey professionalism without clutter."
+                ],
+                "Compositional & UI Guidelines": [
+                    "Compositional Rule: The main subject **(e.g., an abstract chart, architectural feature)** must be positioned to occupy the lower three-quarters of the frame, leaving the top quarter of the image open and uncluttered.",
+                    "Compositional Rule: The primary subject must be perfectly centered or balanced within the composition, **presented in its entirety and fully visible without being cropped on any side**.",
+                    "Compositional Rule: The entire subject must be fully visible, with a clear margin of space between its lowest point and the bottom edge of the frame.",
+                    "The final output must be a full-bleed 9:16 portrait. The image content must extend to all four edges of the frame with no borders, bars, or letterboxing."
+                ],
+                "background_themes": {
+                    "modern_corporate_interiors": [
+                        "in a sunlit, minimalist boardroom with floor-to-ceiling windows overlooking a softly blurred modern cityscape",
+                        "in a sleek, high-tech open-plan office with clean architectural lines and ambient lighting",
+                        "a professional meeting space featuring a modern conference table, minimalist chairs, and clean aesthetics"
+                    ],
+                    "abstract_data_visualization": [
+                        "a futuristic, glowing 3D line graph or bar chart demonstrating a strong upward trajectory against a clean, dark background",
+                        "an elegant, abstract network of interconnected nodes and lines representing global markets or data flow",
+                        "a sophisticated, holographic projection of abstract financial data in a modern, professional setting"
+                    ],
+                    "architectural_finance_concepts": [
+                        "a dynamic, upward-angle shot of a generic, modern skyscraper's facade, symbolizing corporate strength and growth",
+                        "an abstract composition focusing on the clean, strong lines of contemporary office architecture",
+                        "a view from within a modern high-rise boardroom, looking out through a large window onto a blurred cityscape"
+                    ]
+                },
+                "Content & Safety Restrictions": [
+                    "Avoid all corporate logos, software interfaces, and specific brand identifiers.",
+                    "Do not show any negative or stressful business scenarios, such as market crashes, debt, or unemployment.",
+                    "Ensure all charts, graphs, and data visualizations are abstract and depict positive, upward trends.",
+                    "No visible confidential information, text on documents, or specific currency details.",
+                    "Promote diverse and inclusive representation in any imagery featuring people.",
+                    "Avoid any political symbols, controversial business practices, or identifiable public figures."
+                ]
+            }
+        },
+        "careers_education": {
+            "allowed_content": [
+                "Presentation: Aspirational, positive, and professional, with bright, clean aesthetics that inspire growth and achievement.",
+                "Subjects: Collaborative study groups (adult learners), professional mentorship scenarios, skill-building workshops, modern libraries, and abstract concepts of career progression.",
+                "Settings: Modern university campuses, state-of-the-art libraries, professional training centers, sophisticated online learning environments, and minimalist interview settings.",
+                "Concepts: Abstract representations of skill development, career growth, lifelong learning, professional achievement, and success."
+            ],
+            "prohibited_content": [
+                "Demographics: Children, teenagers, or any individuals under 18. Non-diverse or stereotypical representations of professions or students.",
+                "Scenarios: Exam stress, academic failure, unemployment, job loss, workplace conflict, bullying, or any negative or discriminatory situations.",
+                "Branding: Identifiable university logos, corporate branding, specific educational software interfaces, or textbook covers.",
+                "Visuals: Dilapidated facilities, empty classrooms, controversial or politically charged subject matter, religious education."
+            ],
+            "generation_directives": {
+                "Creative & Thematic Goals": [
+                    "Generate a premium, inspiring image of a **professional development or modern learning scenario** that is **bright, clean, and forward-looking**, using soft, natural, or professional lighting to create a positive and motivating atmosphere.",
+                    "The **subject or concept** must be the clear hero, representing ambition, collaboration, and the pursuit of knowledge.",
+                    "The scene should be uncluttered and sophisticated, using organized spaces and clean architectural lines to convey professionalism and focus."
+                ],
+                "Compositional & UI Guidelines": [
+                    "Compositional Rule: The main subject **(e.g., a collaborative group, a learning space)** must be positioned to occupy the lower three-quarters of the frame, leaving the top quarter of the image open and uncluttered.",
+                    "Compositional Rule: The primary subject must be perfectly centered or balanced within the composition, **presented in its entirety and fully visible without being cropped on any side**.",
+                    "Compositional Rule: The entire subject must be fully visible, with a clear margin of space between its lowest point and the bottom edge of the frame.",
+                    "The final output must be a full-bleed 9:16 portrait. The image content must extend to all four edges of the frame with no borders, bars, or letterboxing."
+                ],
+                "background_themes": {
+                    "modern_higher_education": [
+                        "in a sun-drenched, modern university library with rows of books and clean study tables",
+                        "in a state-of-the-art lecture hall, focusing on the clean architectural lines and empty seats",
+                        "in a bright, minimalist campus common area with modern furniture and large windows"
+                    ],
+                    "professional_development": [
+                        "in a clean, modern interview setting with two chairs opposite a sleek desk before a window",
+                        "in a professional training room with a clean whiteboard, organized seating, and modern decor",
+                        "a sophisticated networking event venue with soft lighting and blurred architectural elements in the background"
+                    ],
+                    "abstract_career_growth": [
+                        "a minimalist, symbolic image of a clean, architectural staircase ascending towards a light source",
+                        "an abstract composition of interconnected, glowing pathways symbolizing a career map",
+                        "a view from a modern office window looking out at a bright city skyline, representing future goals"
+                    ]
+                },
+                "Content & Safety Restrictions": [
+                    "Strictly avoid depicting children, teenagers, or any minors. All individuals must appear to be adults.",
+                    "Do not include any university, corporate, or software branding or logos.",
+                    "Avoid all negative scenarios related to careers or education, such as stress, failure, or conflict.",
+                    "Ensure all representations of people are diverse, inclusive, and avoid stereotypes related to gender, age, or profession.",
+                    "No religious, political, or otherwise controversial educational content is permitted."
+                ]
+            }
+        },
+        "health_wellness": {
+            "allowed_content": [
+                "Presentation: Serene, calming, and positive, with a clean and natural aesthetic that promotes well-being and balance.",
+                "Subjects: Individuals engaged in yoga, meditation, or light exercise (stretching, walking). Abstract concepts of mental clarity and mindfulness.",
+                "**Wellness Equipment:** A curated selection of premium, sculptural tools that double as aesthetic objects: **High-quality yoga mats (textured natural rubber, jute, or cork), high-density textured foam rollers (matte black or deep grey only), aesthetic kettlebells (matte vinyl or neoprene coated in earth tones), minimalist vertical dumbbell stands (organizing small weights neatly), wooden balance boards, linen or cotton meditation bolsters.**",
+                "Settings: Tranquil natural landscapes (beaches, forests, mountains at sunrise), minimalist yoga studios, pilates studios, home exercise corners, clean and bright wellness spaces.",
+                "Concepts: Abstract representations of balance, mental health, tranquility, and a healthy lifestyle. Focus on holistic well-being rather than intense fitness."
+            ],
+            "prohibited_content": [
+                "Medical Content: Hospitals, clinics, surgery, doctors, patients, medication, pills, supplements, or any depiction of illness or injury.",
+                "**Heavy Fitness Content:** Industrial gym machinery (large cable machines, leg presses, squat racks), rusty or heavy iron plates, bodybuilding imagery, extreme sweating, or 'gritty' garage gym atmospheres.",
+                "Extreme Transformations: 'Before and after' images, tape measures around body parts, or unrealistic body standards.",
+                "Branding: Gym logos, fitness apparel brands, supplement branding, or specific wellness product placements.",
+                "Visuals: Revealing or overly tight athletic wear, suggestive poses, visible sweat, exhaustion, or pain.",
+                "**Cliché Zen Symbols: Zen stones, stacking rocks, pebbles, river stones, worry stones, balancing rocks, sand gardens, abstract spirals.**"
+            ],
+            "generation_directives": {
+                "Creative & Thematic Goals": [
+                    "**Role:** Act as a High-End Lifestyle Photographer (styled like Kinfolk, Cereal Magazine, or Architectural Digest). Your priority is **'Quiet Luxury'** and **'Tactile Realism'** over generic commercial brightness.",
+                    "**Lighting Philosophy:** Focus on 'Atmospheric Softness'. Use 'Diffused Morning Glow', 'Dappled Sunlight (Komorebi)', or 'Warm Off-Camera Side Light' to reveal textures. The light should feel restorative and warm, never harsh or clinical.",
+                    "**Color Strategy:** AVOID 'Clinical Sterility' (all white). Use a palette of **'Warm Earth Tones'** (sage, terracotta, sand, warm beige, soft timber). If the subject is light/white, the background MUST provide tonal contrast (e.g., natural wood, textured stone, or a soft shadow play).",
+                    "**Materiality & Physics:** Enforce 'Controlled Imperfection'. Objects must obey gravity (fabrics must drape and fold naturally, mats should unroll with slight organic curves). Surfaces must be tactile (raw wood grain, woven linen, porous stone, condensation on glass) to prevent the 'plastic 3D render' look."
+                ],
+                "Compositional & UI Guidelines": [
+                    "Compositional Rule: The main subject must be positioned strictly within the vertical middle of the frame (2nd and 3rd quarters), leaving both the top and bottom quarters completely open and uncluttered.",
+                    "Compositional Rule: The primary subject must be perfectly centered and symmetrically composed, **presented in its entirety and fully visible without being cropped on any side**.",
+                    "Compositional Rule: The entire subject must be fully visible, with a clear margin of space between its lowest point and the bottom edge of the frame.",
+                    "The final output must be a full-bleed 9:16 portrait. The image content must extend to all four edges of the frame with no borders, bars, or letterboxing."
+                ],
+                "background_themes": {
+                    "soft_nature_ambience": [
+                        "in a shaded outdoor setting under a canopy of trees, where rich green leaves fill the background to create a textured, mid-tone backdrop",
+                        "against a backdrop of a deep, saturated blue sky with soft white cloud textures, ensuring a colorful upper frame",
+                        "in a peaceful garden setting during the 'blue hour' (just after sunset), creating cool, calming tones without harsh highlights"
+                    ],
+                    "bright_minimalist_space": [
+                        "in a matte-finished room with light oak textures, using soft side-lighting to create gentle gradients on the walls rather than bright hotspots",
+                        "against a textured cream-colored limestone wall where the shadow of a nearby plant creates a soft pattern, breaking up the solid color",
+                        "in a serene room with textured linen curtains in the background that filter the light into a soft, textured gray-white glow"
+                    ],
+                    "wellness_studio_interior": [
+                        "in a yoga studio with polished wood floors, where the background wall is a textured warm beige Venetian plaster to provide depth",
+                        "in a spacious pilates studio where the background is a soft blur of indoor plants and matte grey walls, ensuring contrast for white text",
+                        "in a cozy home wellness corner with a woven rug, illuminated by a warm lamp positioned low to keep the upper ceiling area dark and moody",
+                        "in a modern studio featuring curved architectural details, lit by soft indirect cove lighting that highlights the texture of the wall material",
+                        "in a quiet space featuring a matte bamboo floor and a translucent shoji screen that shows the distinct shadow frame structure to avoid a flat look"
+                    ],
+                    "abstract_calm_textures": [
+                        "against a background of soft, flowing gradients in deeper calming colors like sage green or terracotta to ensure white text pops",
+                        "on a smooth, clean surface with a soft-focus background of textured fabric folds that create a gentle light-and-shadow play",
+                        "using atmospheric volumetric fog to create a dense, misty environment that is substantial and textured, rather than bright and airy"
+                    ]
+                },
+                "Content & Safety Restrictions": [
+                    "Absolutely no medical or clinical content, including doctors, hospitals, medication, or illness.",
+                    "Avoid unrealistic or idealized body standards; promote inclusive, healthy, and natural body representations.",
+                    "Ensure all apparel is modest, appropriate for the activity, and not revealing or suggestive.",
+                    "Do not show intense exercise, pain, or exhaustion. The focus must remain on gentle wellness.",
+                    "Avoid all logos and branding for gyms, apparel, supplements, or any other products."
+                ]
+            }
+        },
+        "food_drink": {
+            "allowed_content": [
+                "Presentation: Visually appealing, appetizing, clean, organized, fresh appearance with natural colors, professional styling, appropriate serving vessels (e.g., plates, bowls, glasses, mugs).",
+                "Food Types: Elegant desserts, artfully arranged dishes, refreshing beverages, fresh fruits, fresh vegetables, baked goods, cuisine specialties. For India: vegetarian dishes and drinks, snacks, desserts, appetizers.",
+                "Composition: Clean background without distractions, proper lighting emphasizing textures and colors, appropriate depth of field focusing on the subject, balanced arrangement with clear focal point."
+            ],
+            "prohibited_content": [
+                "Types: Messy or unappealing items, raw ingredients, unorganized arrangements. For India: non-vegetarian dishes, eggs, seafood, meat, alcoholic beverages, sauces, dips, spicy food/ingredients, raw cooking ingredients.",
+                "Presentations: Cluttered arrangements, disorganized presentation, unflattering lighting, items in preparation stage, messy eating scenes, untidy table settings, poorly color-corrected images.",
+                "Lighting/Mood: Dark photography, low-key lighting, mood lighting, night scenes, shadows, black or dark gray backgrounds."
+            ],
+            "generation_directives": {
+                "Creative & Thematic Goals": [
+                    "Generate a premium, appetizing image of an **expertly styled food or beverage item** that is **bright, clean, and evenly lit**, using professional softbox or diffused natural lighting to **minimize harsh shadows**.",
+                    "The **subject** must be the clear hero, looking fresh and appealing with vibrant, natural colors.",
+                    "The scene should be elegant and minimalist, using a **light-colored background** and **appropriate serving vessels** to enhance the subject."
+                ],
+                "Compositional & UI Guidelines": [
+                    "Compositional Rule: The main subject must be positioned strictly within the vertical middle of the frame (2nd and 3rd quarters), leaving both the top and bottom quarters completely open and uncluttered.",
+                    "Compositional Rule: The primary subject **(the item and its serving vessel)** must be perfectly centered and symmetrically composed, **presented in its entirety and fully visible without being cropped on any side**.",
+                    "Compositional Rule: The entire subject must be fully visible, with a clear margin of space between its lowest point and the bottom edge of the frame.",
+                    "The final output must be a full-bleed 9:16 portrait. The image content must extend to all four edges of the frame with no borders, bars, or letterboxing."
+                ],
+                "background_themes": {
+                    "natural_outdoor_dining": [
+                        "on a light oak garden table surrounded by fresh, bright greenery and dappled sunlight",
+                        "on a smooth, beige stone table on a sun-drenched patio, with potted herbs and bright plants in the background",
+                        "set on a light linen cloth in a peaceful meadow picnic setting, with soft grass and wildflowers blurred in the distance"
+                    ],
+                    "clean_modern_cafe": [
+                        "on a white table at a chic beachside terrace under a bright blue sky, with wispy clouds and the turquoise ocean blurred in the background",
+                        "on a sleek white marble countertop in a bright, minimalist cafe, bathed in soft, diffused natural light from a nearby window",
+                        "on a light-colored balcony table overlooking a bright, sunlit city skyline with clear visibility"
+                    ],
+                    "cozy_home_kitchen": [
+                        "on a honey-colored wooden dining table bathed in warm, golden morning light, with a window revealing a bright garden view",
+                        "on a clean, white kitchen island counter, with out-of-focus fresh ingredients and copper cookware glistening in soft, natural light",
+                        "on a blonde wood board in a sun-drenched farmhouse kitchen, with inviting warm tones and soft, light textures in the distance"
+                    ]
+                },
+                "Content & Safety Restrictions": [
+                    "Avoid messy, cluttered, or disorganized presentations.",
+                    "Do not show raw ingredients in isolation; the focus must be on the **finished food or beverage**.",
+                    "No alcoholic beverages or items resembling alcohol.",
+                    "Strictly avoid dark environments, night scenes, or low-light photography.",
+                    "For regional-specific guidelines (e.g., India), strictly adhere to all dietary prohibitions (e.g., no non-vegetarian food, including meat, fish, or eggs)."
+                ]
+            }
+        },
+        "science_technology": {
+            "allowed_content": [
+                "Presentation: Innovative, futuristic, and clean, with a sophisticated aesthetic that conveys intelligence and progress.",
+                "Subjects: Abstract representations of data, AI, and networks. Generic, unbranded tech devices (smartphones, laptops). Conceptual scientific visuals (e.g., stylized DNA helix, molecules).",
+                "Settings: Minimalist modern laboratories, clean server rooms, abstract digital landscapes, and futuristic architectural spaces.",
+                "Concepts: Abstract themes of innovation, connectivity, artificial intelligence, scientific discovery, and future technologies."
+            ],
+            "prohibited_content": [
+                "Branding: Recognizable tech company logos (Apple, Google, etc.), specific software interfaces, or branded hardware designs.",
+                "Controversial Science: Medical procedures, vaccine-related imagery, animal testing, genetic engineering on humans, or any scientifically disputed or ethically sensitive topics.",
+                "Visuals: Overly complex technical diagrams, source code, cluttered server racks, dystopian or apocalyptic tech scenarios, or sci-fi clichés.",
+                "Data: Any visible personal data, confidential information, or specific, readable text on screens or documents."
+            ],
+            "generation_directives": {
+                "Creative & Thematic Goals": [
+                    "Generate a premium, futuristic image of an **abstract scientific or technological concept** that is **sleek, clean, and dynamically lit**, using glowing light, holographic elements, and a sophisticated color palette to create a sense of cutting-edge innovation.",
+                    "The **abstract concept or generic device** must be the clear hero, embodying progress, intelligence, and the future.",
+                    "The scene should be minimalist and uncluttered, using clean lines, negative space, and abstract patterns to convey complexity in an elegant and understandable way."
+                ],
+                "Compositional & UI Guidelines": [
+                    "Compositional Rule: The main subject **(e.g., a data visualization, a conceptual device)** must be positioned to occupy the lower three-quarters of the frame, leaving the top quarter of the image open and uncluttered.",
+                    "Compositional Rule: The primary subject must be perfectly centered or balanced within the composition, **presented in its entirety and fully visible without being cropped on any side**.",
+                    "Compositional Rule: The entire subject must be fully visible, with a clear margin of space between its lowest point and the bottom edge of the frame.",
+                    "The final output must be a full-bleed 9:16 portrait. The image content must extend to all four edges of the frame with no borders, bars, or letterboxing."
+                ],
+                "background_themes": {
+                    "abstract_technology_data": [
+                        "a luminous, 3D network of interconnected nodes and data streams flowing through a dark, minimalist space",
+                        "a sophisticated, holographic interface displaying abstract charts and glowing particles in a futuristic command center",
+                        "a sleek, unbranded smartphone or tablet with an abstract, glowing light pattern emanating from its screen"
+                    ],
+                    "clean_scientific_innovation": [
+                        "in a pristine, minimalist laboratory with soft, ambient lighting and a single, elegant piece of futuristic scientific equipment",
+                        "a beautifully rendered, stylized DNA helix or molecular structure with a gentle, glowing light against a clean, dark backdrop",
+                        "a conceptual image of Earth from space, overlaid with a clean, glowing grid representing global data and connectivity"
+                    ],
+                    "futuristic_conceptual_design": [
+                        "a large, transparent holographic display showing abstract data in a modern, minimalist environment",
+                        "a sleek, generic robot or drone in a clean, high-tech setting, representing automation and the future of robotics",
+                        "an abstract composition of clean, overlapping glass panels and subtle light refractions, symbolizing advanced materials science"
+                    ]
+                },
+                "Content & Safety Restrictions": [
+                    "Avoid all logos, branding, and recognizable product designs from any technology or science-related company.",
+                    "Do not show any controversial or ethically sensitive scientific topics; keep concepts abstract and universally positive.",
+                    "Ensure no specific or readable data, text, or code is visible on any screen or surface.",
+                    "Avoid dystopian themes; all imagery should present science and technology in a positive, optimistic, and forward-looking manner.",
+                    "Steer clear of generic stock photo clichés like people in lab coats pointing at glowing screens."
+                ]
+            }
+        },
+        "travel": {
+            "allowed_content": [
+                "Destination Types: Scenic landscapes, natural wonders, beaches, mountains, forests, lakes, rivers, secluded locations, architectural landmarks, historical sites, cultural destinations, urban scenes.",
+                "Presentation: Accurate representation, well-composed with proper alignment, vibrant/appealing colors, natural appearance, good lighting, clear main subject without obstructions.",
+                "Composition: Straight horizon lines, vertically aligned architecture without distortion, clear focal point without overcrowding, balanced composition, appropriate framing, unobstructed view of primary destination element."
+            ],
+            "prohibited_content": [
+                "Destination Types: Religious buildings, construction sites, garbage dumps, parking lots, conflict zones, politically controversial locations, borders or checkpoints, night scenes, busy city traffic.",
+                "Scenarios: Overcrowded tourist locations, littered areas, trash/garbage scenes, poor weather, gloomy/overcast skies, poorly maintained locations, architecture resembling religious buildings.",
+                "Visual elements: Unflattering angles, poorly composed scenes, badly aligned horizons, tilted architecture, distracting foreground elements, poorly edited photos, heavily filtered images.",
+                "Technical issues: Flat skies, solid single-color backgrounds, 'clear blue sky', 'empty sky', 'cloudless sky'."
+            ],
+            "generation_directives": [
+                "Create a stunning landscape with vibrant natural colors and perfect composition.",
+                "Design a serene travel scene with a clean, uncluttered view of an iconic landmark.",
+                "Generate a premium travel image with professional outdoor lighting.",
+                "Compose an inspirational destination photo with a straight horizon and clear visibility.",
+                "**Ensure the sky is rendered with natural tonal gradients (fading from deep to light) to avoid a flat, solid-color appearance.**",
+                "**Use atmospheric perspective to create depth in the background and upper frame.**",
+                "Position the main subject to occupy the vertical middle of the frame to balance the composition.",
+                "Avoid crowds, tourists, or people obscuring landmarks.",
+                "Do not show garbage, construction, or urban clutter.",
+                "Avoid gloomy skies, rain, or dull lighting conditions.",
+                "No religious buildings, temples, churches, or mosques.",
+                "Avoid busy cityscapes with traffic or congestion."
+            ]
+        },
+        "sports": {
+            "allowed_content": [
+                "Approved Athletes: A-list athletes, accurately represented.",
+                "Contextual Requirements: Exact jersey/uniform as in article, correct current team affiliation, appropriate emotion matching article context. For non-tier-1 athletes, use abstract representation.",
+                "Presentation: Clean, focused composition highlighting athlete, appropriate sports context/environment, professional quality, clear visibility of athlete and equipment."
+            ],
+            "prohibited_content": [
+                "Visual Prohibitions: Competitor logos, tobacco/harmful substance advertisements, multiple overlapping images, heavily composited images, non-approved athletes, flags, political symbols, branded apparel, crowded stadium shots.",
+                "Contextual Prohibitions: Athlete in sports jersey for personal life articles, inaccurate team affiliation, outdated jerseys, inappropriate emotional context."
+            ],
+            "generation_directives": [
+                "Create clean sports images of approved athletes in their exact current team jerseys.",
+                "Design action shots of approved athletes showing emotion described in the article.",
+                "Generate premium sports images accurately representing current context.",
+                "Compose sports portraits focusing purely on athletes without distractions.",
+                "Avoid any competitor logos on jerseys or in the background.",
+                "Do not include multiple poses or compositions of the same athlete.",
+                "Avoid tobacco or harmful substance advertisements in the background.",
+                "No flags of any kind, even on jerseys or in stadiums.",
+                "Avoid composite or heavily edited images that look artificial.",
+                "Verify athlete's current team/jersey matches article.",
+                "Do not show sports jersey if the article discusses personal life.",
+                "Check athlete is on approved list, otherwise use abstract imagery."
+            ]
+        },
+        "shopping_lifestyle": {
+            "allowed_content": [
+                "Presentation: Aspirational, sophisticated, and clean, with a premium aesthetic that showcases a curated lifestyle.",
+                "Subjects: Modest, full-coverage fashion; unbranded accessories (bags, shoes); elegant home decor; generic, beautifully packaged goods.",
+                "Settings: Minimalist boutique interiors, beautifully styled home environments, chic urban shopping districts (generic storefronts).",
+                "Concepts: The idea of curated living, personal style, quality craftsmanship, and modern consumerism in an elegant, abstract manner."
+            ],
+            "prohibited_content": [
+                "Branding: Specific retailer logos, designer brands, e-commerce platform UIs, recognizable product packaging, or store names.",
+                "Scenarios: Chaotic shopping events (e.g., Black Friday), crowded malls, clearance sales, excessive consumerism, or product unboxing.",
+                "Visuals: Price tags, discount signs, credit cards, currency. Revealing clothing, provocative poses, or identifiable celebrity endorsements.",
+                "Products: Age-restricted items (e.g., alcohol), pharmaceuticals, counterfeit goods, or any controversial products."
+            ],
+            "generation_directives": {
+                "Creative & Thematic Goals": [
+                    "Create a scene with a strong sense of place and aspirational mood. The background should function as a storytelling element, using architectural details, curated objects, and intentional lighting to build a sophisticated narrative around the subject.",
+                    "The primary subject (a person, a setting, or an object) must be presented in a way that feels natural, elegant, and integrated into a desirable lifestyle.",
+                    "Generate elegant and professional lifestyle imagery with a premium aesthetic, using high-quality cinematic or soft, natural lighting."
+                ],
+                "Compositional & UI Guidelines": [
+                    "Compositional Rule: The upper quarter of the frame must be kept completely open and uncluttered, seamlessly extending the scenic background to create natural negative space.",
+                    "Compositional Rule: The main subject must be positioned to occupy the lower three-quarters of the frame, anchoring the composition while keeping the top area empty.",
+                    "Compositional Rule: The primary subject must be perfectly centered and balanced within the composition, avoiding awkward angles or tight crops that obscure key features.",
+                    "The final output must be a full-bleed 9:16 portrait. The image content must extend to all four edges of the frame with no borders, bars, or letterboxing."
+                ],
+                "background_themes": {
+                    "minimalist_boutique_retail": [
+                        "inside a chic, minimalist clothing boutique with a beautifully organized, blurred rack of unbranded garments in the background",
+                        "displayed on a clean, modern shelf in a high-end store, with soft gallery lighting and generic home decor elements in the distance",
+                        "in a spacious, sunlit concept store with minimalist decor, soft shadows, and architectural lines leading the eye to the center"
+                    ],
+                    "aspirational_home_interior": [
+                        "in a beautifully styled, bright living room with chic, modern furniture and soft, natural light pouring through a window",
+                        "elegantly arranged on a clean marble coffee table, with a blurred modern sofa and textured rug in the background to create depth",
+                        "in a serene, organized walk-in closet with neat, out-of-focus stacks of clothing and soft, ambient lighting"
+                    ],
+                    "sophisticated_urban_lifestyle": [
+                        "positioned in front of a generic, elegant boutique window on a clean, sophisticated city street with soft reflections",
+                        "set against a modern, upscale open-air shopping district with blurred storefronts and a textured, atmospheric sky above",
+                        "on a chic, tree-lined urban sidewalk, with dappled sunlight and a soft, gradient sky visible between the buildings"
+                    ]
+                },
+                "Content & Safety Restrictions": [
+                    "Ensure all fashion is modest, professional, and culturally appropriate. Avoid revealing or tight-fitting clothing.",
+                    "Avoid all designer logos, brand names, store identifiers, and recognizable product packaging.",
+                    "Do not show price tags, sale signs, or any direct transactional elements.",
+                    "Avoid identifiable models, celebrities, or crowded, chaotic shopping scenes.",
+                    "No suggestive poses, excessive skin exposure, or provocative styling."
+                ]
+            }
+        },
+        "politics_world_affairs": {
+            "allowed_content": [
+                "Destination Types: Official government buildings (parliaments, capitol buildings, presidential residences like the White House), headquarters of major international organizations (e.g., UN Headquarters), and neutral, non-controversial national monuments.",
+                "Presentation: Formal, stately, and objective. The image must be well-composed, symmetrical where appropriate, and evenly lit.",
+                "Composition: Balanced, stable, and often symmetrical framing. Clear, unobstructed view of the building. Avoid dramatic or unusual angles that could imply bias."
+            ],
+            "prohibited_content": [
+                "Destination Types: Military bases, conflict zones, active protest sites, political party headquarters, courthouses during trials, or the private residences of political figures.",
+                "Scenarios: Political rallies, protests, military parades or conflict, election campaign events, or any scene depicting social unrest or violence.",
+                "Visual Elements: Political party logos or symbols, propaganda, flags used in a context of aggression, or any imagery that appears biased or sensationalized."
+            ],
+            "generation_directives": [
+                "Generate a stately, formal, and politically neutral image of the specified government building or landmark.",
+                "Position the main subject to occupy the lower three-quarters of the frame, leaving the top quarter of the image open and uncluttered.",
+                "The composition must convey stability and authority, often using a symmetrical, centered shot.",
+                "The scene must be completely empty, with no politicians, leaders, crowds, protestors, police, or military personnel visible.",
+                "Use clear, balanced, and even lighting. Avoid dramatic shadows, gloomy skies, or overly bright, celebratory atmospheres.",
+                "Ensure the building is depicted accurately and appears clean and well-maintained.",
+                "Do not include any political party symbols, banners, or partisan colors.",
+                "Avoid displaying national flags in any context that could suggest conflict, aggression, or nationalism; they should only appear as a neutral part of the building's official display."
+            ]
+        },
+        "society_human_interest": {
+            "allowed_content": [
+                "Presentation: Warm, authentic, and uplifting, with natural lighting and a positive, hopeful tone that fosters a sense of connection.",
+                "Subjects: Abstract concepts of community, diversity, and collaboration. Clean and safe public spaces like parks, libraries, and community centers.",
+                "Settings: Bright, modern public spaces, well-maintained community gardens, vibrant (but generic) local markets, and minimalist collaborative environments.",
+                "Concepts: Abstract representations of unity, social connection, teamwork, inclusivity, and positive community engagement."
+            ],
+            "prohibited_content": [
+                "Scenarios: Poverty, homelessness, crime, discrimination, social conflict, protests, or any form of hardship or suffering.",
+                "People: Stereotypical representations of any group. Individuals in distress or vulnerable situations. Identifiable faces in documentary-style scenes.",
+                "Visuals: Gritty, raw, or negative photojournalistic styles. Political or religious symbols used in a divisive context. Any imagery that depicts social or economic inequality.",
+                "Environments: Dilapidated, unsafe, or unclean environments. Scenes that depict loneliness, isolation, or social division."
+            ],
+            "generation_directives": {
+                "Creative & Thematic Goals": [
+                    "Generate a premium, heartwarming image of a **concept representing positive community and connection** that is **bright, warm, and inviting**, using soft, natural light to create an atmosphere of unity and optimism.",
+                    "The **concept of togetherness** must be the clear hero, embodying themes of diversity, collaboration, and shared humanity.",
+                    "The scene should be clean, harmonious, and uncluttered, using organized spaces and symbolic elements to convey a strong sense of a thriving, positive community."
+                ],
+                "Compositional & UI Guidelines": [
+                    "Compositional Rule: The upper quarter of the frame must be kept completely open and uncluttered, seamlessly extending the scenic background to create natural negative space.",
+                    "Compositional Rule: The main subject must be positioned to occupy the lower three-quarters of the frame, anchoring the composition while keeping the top area empty.",
+                    "Compositional Rule: The primary subject must be perfectly centered and balanced within the composition, avoiding awkward angles or tight crops that obscure key features.",
+                    "The final output must be a full-bleed 9:16 portrait. The image content must extend to all four edges of the frame with no borders, bars, or letterboxing."
+                ],
+                "background_themes": {
+                    "vibrant_public_spaces": [
+                        "a clean, sunlit public park with a well-maintained path and lush green lawns under a clear sky",
+                        "in a bright, modern public library with organized bookshelves and clean, empty reading areas bathed in natural light",
+                        "a vibrant, colorful, and clean local community market, focusing on the neat stalls of generic goods (no people or branding)"
+                    ],
+                    "collaborative_community_environments": [
+                        "a well-tended, thriving community garden with neat rows of plants and clean gardening tools resting against a wooden bench",
+                        "a bright, clean community workshop or art space with organized supplies and large windows letting in daylight",
+                        "an architectural detail of a modern, welcoming community center with a facade of warm wood and glass"
+                    ],
+                    "abstract_unity_concepts": [
+                        "a beautiful, minimalist composition of many different colored threads weaving together into a single, strong tapestry",
+                        "an abstract network of softly glowing, interconnected lights in a variety of colors, symbolizing a diverse social network",
+                        "a close-up of a vibrant, colorful mosaic made of different shapes and sizes fitting together perfectly"
+                    ]
+                },
+                "Content & Safety Restrictions": [
+                    "Strictly avoid all negative social issues, including poverty, conflict, crime, and discrimination.",
+                    "Ensure any representation of people is diverse, inclusive, and avoids all forms of stereotypes.",
+                    "All environments must appear safe, clean, and positive. Avoid run-down or neglected settings.",
+                    "Do not use imagery that could be interpreted as political, religious, or socially divisive.",
+                    "The overall tone must be consistently positive, hopeful, and focused on unity and human connection."
+                ]
+            }
+        }
+    }
+}

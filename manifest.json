@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Siso Copier",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Streamline your web research with instant keyword highlighting, context-aware auto-copy, and organized history management.",
   "permissions": [
     "contextMenus",
@@ -61,5 +61,8 @@
     "nav-prev": {
       "description": "Navigate to previous highlight"
     }
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; connect-src 'self' https://huggingface.co https://*.hf.co https://raw.githubusercontent.com https://cdn.jsdelivr.net"
   }
 }
