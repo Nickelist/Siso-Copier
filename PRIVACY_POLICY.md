@@ -31,7 +31,7 @@ The information we process is used strictly to provide the extension's core func
 
 1.  **Highlighting**: To persist your highlights on specific pages so they remain visible when you revisit them.
 2.  **History Dashboard**: To verify and display a list of your past research and highlights within the extension's sidebar.
-3.  **AI Features**: To process text summaries and explanations upon your explicit request.
+3.  **AI Features**: To process text content (summaries, explanations, rewrites, quizzes) upon your explicit request.
 
 ## 3. Data Storage
 
@@ -45,18 +45,20 @@ All "User-Generated Content" (highlights, page context, history logs) is stored 
 
 ## 4. Data Sharing and AI Features
 
-**Siso Copier** integrates with Third-Party Large Language Models (LLMs) to provide "Summarize" and "Explain" features.
+**Siso Copier** integrates with Third-Party Large Language Models (LLMs) to provide "Summarize", "Explain", "Rewrite", "Quiz", and "Key Insights" features.
 
-- **User-Initiated Only**: Data is _only_ shared when you click a specific button (e.g., "Summarize Page" or "Explain Selection").
+- **User-Initiated Only**: Data is _only_ shared when you click a specific button (e.g., "Summarize Page", "Quiz Me", or "Rewrite").
 - **Direct Transmission**: The extension sends data directly from your browser to the AI Provider's API. It does **not** pass through any intermediate server owned by us.
 - **Bring Your Own Key (BYOK)**: You provide your own API keys. We do not provide or resell access to these services.
+- **Local Models**: If you use local providers (e.g., LM Studio, Chrome AI), your data remains entirely on your device and is not transmitted to any cloud provider.
 
 **Third-Party Providers:**
-If you choose to use these features, your data will be subject to the privacy policies of the respective providers you select:
+If you choose to use cloud-based features, your data will be subject to the privacy policies of the respective providers you select:
 
 - **Google Gemini**: [Google Privacy Policy](https://policies.google.com/privacy)
 - **OpenAI**: [OpenAI Privacy Policy](https://openai.com/privacy)
 - **Anthropic / OpenRouter**: [OpenRouter Privacy Policy](https://openrouter.ai/privacy)
+- **Fal.ai**: [Fal.ai Privacy Policy](https://fal.ai/privacy)
 
 ## 5. Permissions
 
