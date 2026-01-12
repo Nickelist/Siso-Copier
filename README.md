@@ -9,12 +9,15 @@
 - **Instant Highlighting**: Automatically highlight all occurrences of keywords on any webpage.
 - **Context-Aware Copy**: Copy text with its source URL and page title automatically.
 - **Smart Extraction**: "Copy Page Content" extracts only the article text, stripping away ads, navigation, and clutter.
-- **Unified Sidebar**: Access all tools from a sleek, non-intrusive side panel.
+- **Tabbed Interface**: New clean layout with dedicated "Home" and "AI Explainer" tabs.
 
-### AI Research Assistant
+### AI Research Assistant (New!)
 
 - **Summarize Page**: Get a concise, bulleted summary of any article in seconds.
 - **Explain Selection**: Highlight confusing text and get a simple explanation powered by AI.
+- **Rewrite Capabilities**: Instantly rewrite text to be more professional, simple, or concise.
+- **Key Insights**: Extract the core takeaways from long documents at a glance.
+- **Quiz Me**: Generate quick quizzes from page content to test your understanding.
 - **Multi-Model Support**: Works with:
   - **Google Gemini** (Recommended, Free Tier available)
   - **OpenAI** (GPT-4o-mini, etc.)
