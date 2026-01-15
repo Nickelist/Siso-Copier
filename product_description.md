@@ -16,12 +16,12 @@ All your research is saved locally in a persistent history, ensuring you never l
 
 ## Future Roadmap & Enhancements
 
-1.  **"Chat with Page" Interface**: Upgrade the AI tab to a conversational interface. Ask specific questions like "What are the pros and cons listed?" or "Find all dates mentioned" instead of just static summaries.
-2.  **Smart Copy Presets**: Instead of complex code, provide a simple dropdown menu to instantly format clips for your favorite tools.
-    - _Options_: "Obsidian (Markdown)", "Notion Table", "Email Friendly", "Tweet Thread".
-    - _Benefit_: One-click formatting without needing to learn any syntax.
-3.  **Visual Content Picker**: Simplify the complex "Content Filtering" settings. instead of typing technical selectors, simply click on the parts of the page you want to ignore (like ads or menus) to block them permanently.
-4.  **Auto-Highlight Watchlist**: A passive scanning feature where users define a list of "watched keywords" (e.g., "Revenue", "Competitor Name").
-    - _Function_: Whenever you visit ANY page, these keywords are automatically highlighted in a specific color.
-    - _Benefit_: Never miss important terms while skimming new content.
-5.  **Project Collections**: Move beyond a flat history. Allow users to create "Projects" (e.g., "Thesis", "Vacation") and save clips directly into them.
+1. **"Chat with Page" Interface**: Upgrade the AI tab to a conversational interface. Ask specific questions like "What are the pros and cons listed?" or "Find all dates mentioned" instead of just static summaries.
+2. **Smart Copy Presets**: Instead of complex code, provide a simple dropdown menu to instantly format clips for your favorite tools.
+   - _Options_: "Obsidian (Markdown)", "Notion Table", "Email Friendly", "Tweet Thread".
+   - _Benefit_: One-click formatting without needing to learn any syntax.
+3. **Visual Content Picker**: Simplify the complex "Content Filtering" settings. instead of typing technical selectors, simply click on the parts of the page you want to ignore (like ads or menus) to block them permanently.
+4. **Auto-Highlight Watchlist**: A passive scanning feature where users define a list of "watched keywords" (e.g., "Revenue", "Competitor Name").
+   - _Function_: Whenever you visit ANY page, these keywords are automatically highlighted in a specific color.
+   - _Benefit_: Never miss important terms while skimming new content.
+5. **Project Collections**: Move beyond a flat history. Allow users to create "Projects" (e.g., "Thesis", "Vacation") and save clips directly into them.

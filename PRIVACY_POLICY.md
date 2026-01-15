@@ -29,9 +29,9 @@ We store your configuration settings to provide a consistent experience across d
 
 The information we process is used strictly to provide the extension's core functionality:
 
-1.  **Highlighting**: To persist your highlights on specific pages so they remain visible when you revisit them.
-2.  **History Dashboard**: To verify and display a list of your past research and highlights within the extension's sidebar.
-3.  **AI Features**: To process text content (summaries, explanations, rewrites, quizzes) upon your explicit request.
+1. **Highlighting**: To persist your highlights on specific pages so they remain visible when you revisit them.
+2. **History Dashboard**: To verify and display a list of your past research and highlights within the extension's sidebar.
+3. **AI Features**: To process text content (summaries, explanations, rewrites, quizzes) upon your explicit request.
 
 ## 3. Data Storage
 
@@ -86,5 +86,5 @@ We may update this Privacy Policy from time to time. We will notify you of any c
 
 If you have questions about this Privacy Policy or our data practices, please contact us at:
 
-**Email**: Nickelist.Saikia@gmail.com
+**Email**: <Nickelist.Saikia@gmail.com>
 **GitHub Repository**: [https://github.com/Nickelist/Siso-Copier](https://github.com/Nickelist/Siso-Copier)

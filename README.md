@@ -67,4 +67,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Developed by Nickelist Saikia**
+Developed by **Nickelist Saikia**
