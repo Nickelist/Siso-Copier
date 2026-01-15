@@ -633,6 +633,88 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // --- AI PROVIDER INDICATOR ---
+  async function updateAiProviderIndicator() {
+    const indicator = document.getElementById("aiProviderIndicator");
+    const textEl = document.getElementById("aiProviderText");
+    const dotEl = document.querySelector(".provider-dot");
+
+    if (!indicator || !textEl) return;
+
+    try {
+      const settings = await chrome.storage.sync.get({
+        aiProvider: "gemini",
+        aiModel: "",
+        localModelId: null,
+      });
+
+      const providerMap = {
+        gemini: "Gemini",
+        openai: "OpenAI",
+        openrouter: "OpenRouter",
+        lmstudio: "LM Studio",
+        fal: "Fal.ai",
+        nano: "Chrome Built-in AI",
+        local: "Offline (WebLLM)",
+      };
+
+      const providerName =
+        providerMap[settings.aiProvider] || settings.aiProvider;
+      let displayText = `${providerName}`;
+
+      // Optional: Add model name if available and short enough
+      if (settings.aiProvider === "local" && settings.localModelId) {
+        // Simplify local model ID for display
+        const modelMap = {
+          "Qwen2.5-0.5B-Instruct-q4f16_1-MLC": "Qwen 0.5B",
+          "Llama-3.2-1B-Instruct-q4f16_1-MLC": "Llama 1B",
+          "gemma-2-2b-it-q4f16_1-MLC": "Gemma 2B",
+        };
+        if (modelMap[settings.localModelId]) {
+          displayText += ` (${modelMap[settings.localModelId]})`;
+        }
+      } else if (settings.aiModel) {
+        // Truncate long model names
+        const modelName = settings.aiModel.split("/").pop(); // Handle anthropic/claude...
+        if (modelName.length < 15) {
+          displayText += ` (${modelName})`;
+        }
+      }
+
+      textEl.textContent = displayText;
+      indicator.style.display = "flex";
+
+      // Update dot color based on provider
+      if (settings.aiProvider === "local" || settings.aiProvider === "nano") {
+        dotEl.style.backgroundColor = "#eab308"; // Yellow/Orange for local/offline
+      } else {
+        dotEl.style.backgroundColor = "#10b981"; // Green for API
+      }
+    } catch (e) {
+      console.error("Error updating provider indicator:", e);
+      indicator.style.display = "none";
+    }
+  }
+
+  // Call on load
+  updateAiProviderIndicator();
+
+  // Call when settings change
+  chrome.storage.onChanged.addListener((changes, namespace) => {
+    if (
+      namespace === "sync" &&
+      (changes.aiProvider || changes.aiModel || changes.localModelId)
+    ) {
+      updateAiProviderIndicator();
+    }
+  });
+
+  // Also update when switching to AI tab
+  const aiTabBtn = document.querySelector('[data-tab="ai"]');
+  if (aiTabBtn) {
+    aiTabBtn.addEventListener("click", updateAiProviderIndicator);
+  }
+
   async function handleAiAction(action, metadata = {}) {
     // 1. Get Settings
     const settings = await chrome.storage.sync.get({
@@ -668,6 +750,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const isSelectionAction = ["explain", "rewrite", "chat"].includes(action);
 
     try {
+      const [tab] = await chrome.tabs.query({
+        active: true,
+        currentWindow: true,
+      });
+
+      if (
+        !tab ||
+        !tab.url ||
+        tab.url.startsWith("chrome://") ||
+        tab.url.startsWith("chrome-extension://") ||
+        tab.url.startsWith("edge://") ||
+        tab.url.startsWith("about:")
+      ) {
+        showStatus("Cannot run AI on this page type", true);
+        return;
+      }
+
       if (!isSelectionAction) {
         // Page Actions (Summarize, Insights, Quiz)
         showStatus("Extracting page content...");

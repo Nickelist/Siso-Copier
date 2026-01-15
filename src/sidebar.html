@@ -509,6 +509,31 @@
         width: auto;
         padding: 0 16px;
       }
+      /* Provider Indicator */
+      .provider-indicator {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        color: #666;
+        background: rgba(0, 0, 0, 0.04);
+        padding: 4px 8px;
+        border-radius: 6px;
+        margin-bottom: 12px;
+        width: fit-content;
+      }
+
+      body.dark-mode .provider-indicator {
+        color: #aaa;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .provider-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: #10b981; /* Green for active */
+      }
     </style>
   </head>
   <body>
@@ -665,6 +690,16 @@
       <!-- AI Tab -->
       <div id="tab-ai" class="tab-content">
         <div class="button-grid">
+          <!-- Provider Indicator -->
+          <div
+            id="aiProviderIndicator"
+            class="provider-indicator"
+            style="display: none"
+          >
+            <div class="provider-dot"></div>
+            <span id="aiProviderText">Loading...</span>
+          </div>
+
           <!-- Page Actions -->
           <div class="section-header">Analyze Page</div>
 
